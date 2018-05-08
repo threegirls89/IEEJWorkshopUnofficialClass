@@ -8,9 +8,12 @@
 %%    by Motoaki Sato (ULS and Company), 2005. 
 %%     E-mail: teppei@uls.co.jp, http://www.uls.co.jp/
 %%
+% v2.2以降の変更
+% v2.2 \enumerateのパラメタ変更。TM_paper_stylefile_word.docに似せる
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ieej-tec2}%
-[2016/10/25 v2.1, modified by C.Muto by using Okumura's `jsarticle.cls']
+[2018/05/07 v2.2, modified by S.Miyoshi by using Okumura's `jsarticle.cls']
+%[2016/10/25 v2.1, modified by C.Muto by using Okumura's `jsarticle.cls']
 %[2014/09/07 v2.0, modified by C.Muto by using Okumura's `jsarticle.cls']
 %  [2005/11/07 v1.0 for ieej-tec]
 
@@ -1237,10 +1240,10 @@
    \edef\@enumctr{enum\romannumeral\the\@enumdepth}%
    \list{\csname label\@enumctr\endcsname}{%
          \topsep\z@\parsep\z@\partopsep\z@\itemsep\z@
-	 \leftmargin3zw
+	 \leftmargin0zw
 	 \labelwidth2zw
 	 \labelsep1zw
-	 \itemindent1zw
+	 \itemindent4zw
 	 \listparindent1zw
          \clubpenalty\z@
          \usecounter{\@enumctr}%
