@@ -1876,11 +1876,7 @@
 %% end of citesort.sty
 
 \def\cite@f@t@{%
- \if@english
   --%
- \else
-  〜%
- \fi
 }
 
 %% from "cite.sty", with a little customized
