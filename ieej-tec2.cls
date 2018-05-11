@@ -917,11 +917,9 @@
   \small
   \vskip\Cvs
   \bgroup
-   \leftskip2zw\rightskip1zw
-   {\bfseries Abstract}\par
+   \leftskip2zw\rightskip2zw
    \leavevmode\hskip1zw
    \unhbox\@abstractbox\par
-  \egroup
   \vskip\Cvs
   \if@english
    {\bfseries Keywords:}\ 
@@ -932,7 +930,8 @@
    \ifvoid\e@keywordbox\else
     (\unhbox\e@keywordbox)
    \fi
-  \fi
+  \fi%
+  \egroup
   \end{minipage}%
  }%
   %%
@@ -1507,7 +1506,7 @@
 \long\def\@makecaption#1#2{%
  \vskip\abovecaptionskip
   %\belowcaptionskip1mm
-  \def\capnum@font{\normalfont\sffamily}%
+  \def\capnum@font{\normalfont}%
   \let\cap@font\relax
  \setbox\@tempboxa\hbox{\cap@font
   \ieej@shortstack[c]{{\capnum@font #1}\hskip1zw #2}}%
@@ -1830,8 +1829,8 @@
 %%\newcommand{\listtablename}{表 目 次}
 \newcommand{\refname}{参考文献}
 %%\newcommand{\indexname}{索 引}
-\newcommand{\figurename}{図}
-\newcommand{\tablename}{表}
+\newcommand{\figurename}{Fig.~}
+\newcommand{\tablename}{Table~}
 %%\newcommand{\appendixname}{付 録}
 %%\newcommand{\abstractname}{概 要}
 
