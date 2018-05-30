@@ -630,7 +630,7 @@
  \global\advance \@alcnt \@ne
  %%
  \@tempcnta\z@
- \ifnum\@alcnt>\@ne\unskip ，
+ \ifnum\@alcnt>\@ne\unskip
   \@tempcnta\@alcnt
   \advance \@tempcnta -\@ne
  \fi
@@ -880,7 +880,10 @@
 
 \def\@maketitle{%
  \setbox\@tempboxa\hbox{%
-  \begin{minipage}{\textwidth}
+  \@tempdima=\textwidth
+  \advance \@tempdima -4zw
+  \hspace{2zw}%
+  \begin{minipage}{\@tempdima}
   {\Large
    \if@english\baselineskip30\@Q\fi
    \centering
@@ -917,20 +920,19 @@
   \small
   \vskip\Cvs
   \bgroup
-   \leftskip2zw\rightskip2zw
-   \leavevmode\hskip1zw
-   \unhbox\@abstractbox\par
-  \vskip\Cvs
-  \if@english
-   {\bfseries Keywords:}\ 
-   \unhbox\j@keywordbox\par
-  \else
-   {\bfseries キーワード}\hbox to 1zw{\hss ：\hss}%
-   \unhbox\j@keywordbox\par
-   \ifvoid\e@keywordbox\else
+    \leavevmode\hskip1zw
+    \unhbox\@abstractbox\par
+   \vskip\Cvs
+   \if@english
+    {\bfseries Keywords:}\ 
+    \unhbox\j@keywordbox\par
+   \else
+    {\bfseries キーワード}\hbox to 1zw{\hss ：\hss}%
+    \unhbox\j@keywordbox\par
+    \ifvoid\e@keywordbox\else
     (\unhbox\e@keywordbox)
-   \fi
-  \fi%
+    \fi
+   \fi%
   \egroup
   \end{minipage}%
  }%
