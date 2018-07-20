@@ -1443,7 +1443,7 @@
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
-\def\fnum@figure{\figurename~\thefigure}
+\def\fnum@figure{\figurename~\thefigure.}
 \def\fnum@efigure{Fig.\,\thefigure.}
 \newenvironment{figure}
                {\@floatenv\capwidth.9\columnwidth\ecapwidth.9\columnwidth
@@ -1458,7 +1458,7 @@
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
-\def\fnum@table{\tablename~\thetable}
+\def\fnum@table{\tablename~\thetable.}
 \def\fnum@etable{Table~\thetable.}
 \newenvironment{table}
                {\@floatenv\capwidth.9\columnwidth\ecapwidth.9\columnwidth
