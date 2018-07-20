@@ -1,0 +1,323 @@
+\documentclass[platex,fleqn]{ieej-tec2}% documentclassの宣言で処理エンジンを指定する。fleqnは数式左寄せのため
+\usepackage{amsmath,amssymb,bm}% ams-LaTeXの色々を使う
+\usepackage[dvipdfmx]{graphicx,color}% 
+\usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
+%
+% 論文番号（1頁目右上にあるやつ）
+\論文番号{xx-xx-xx}
+%
+% 日本語タイトル
+\jtitle{電気学会研究会\LaTeX{}スタイルファイルに関する研究}
+%
+% 英語タイトル
+\etitle{A study on the style file for IEEJ workshop.}
+% 
+% 著者リスト
+\authorlist{%
+ \authorentry*{三好　正太}{Shota Miyoshi}{1} %発表者は*をつける \authorentry{日本語名}{英語名}{後述の\affiliateとの関連付け番号}
+ \authorentry{電子　太郎}{Taro Denshi}{2}
+ \authorentry{電子　二郎}{Jiro Denshi}{2}
+ \authorentry{電子　三郎}{Saburo Denshi}{3}
+ \authorentry{電子　四郎}{Shiro Denshi}{3}
+}
+% 
+% 所属 [authorentryとの関連付け番号]
+\affiliate[1]
+ {東京大学}
+ {The University of Tokyo}
+\affiliate[2]
+ {日本電機大学}
+ {Nihon Denki University}
+\affiliate[3]
+ {日本電力}
+ {Nihon Electric Power Company}
+%
+% authormetryの番号により改行
+\breakaffiliate{1}
+\breakaffiliate{2}
+%
+% 和文キーワード
+\begin{jkeyword}
+和文キーワード，キーワード2，キーワード3，キーワード4，キーワード5，キーワード6，キーワード7，キーワード8，キーワード9
+\end{jkeyword}
+%
+%英文キーワード。最後に%を入れないと最後のキーワードと)との間に空白の入るバグあり
+\begin{ekeyword}
+Keywords, keyword2, keyword3, keyword4, keyword5, keyword6, keyword7, keyword8, keyword9, keyword10, keyword11%
+\end{ekeyword}
+%
+% 参照いろいろ（ieej-tec2の内容から外れると思うので直接書き。要望あればieej-tec2.clsに移します）
+\def\tabref#1{\tablename\ref{#1}}
+\def\figref#1{\figurename\ref{#1}}
+\def\secref#1{\ref{#1}節}
+\def\formref#1{\eqref{#1}式}
+%
+%%%%%%%%%%%%%%%% preambleここまで %%%%%%%%%%%%%%%%
+%
+\begin{document}
+%
+% abstractは\begin{document}と\maketitleの間に書く
+\begin{abstract}
+The ○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○
+○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○
+○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○.%
+\end{abstract}
+\maketitle
+
+%
+%%%%%%%%%%%%%%%% ここから本文 %%%%%%%%%%%%%%%%
+%
+\section{大見出}
+本文□（MS明朝 $+$ Computer Modern）□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□□□。
+□□□□□□□，□□□□□□□□□□□□□□□□□□□□□□。
+□□□□□□□□□□□□□，□□□□□□□□□□□□□□□□□□。
+
+\section{大見出}
+
+\subsection{小見出＿文字}
+小見出＿段落□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+引用文献\cite{IEEJformat}□□引用文献\cite{bib2,bib3}□□引用文献\cite{bib4,bib5,bib6,bib7}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+\begin{enumerate}
+\item
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+\item
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+\end{enumerate}
+
+\subsection{小見出＿文字}
+小見出＿段落□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+%
+\begin{equation}
+Z = X + Y
+\end{equation}
+%
+□□本文（字下無）□□□□□□□□□□□□□□□□□□□□□□□□□。
+%
+\begin{align}
+Z &= X + Y \notag\\
+& \qquad Z = X + Y \text{\scriptsize ｛数式行（続）｝} \\
+\intertext{式説明□□□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□□□□□□□□□□□□□□□。
+（ここはちゃんと実装していないので準拠でない）%
+}
+Z &= X + Y \times \frac AB
+\end{align}
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□（\tabref{tab:example}参照）。
+
+\begin{table}[b]
+\centering
+\caption{Title.}
+\label{tab:example}
+\tabcolsep=1.5truemm
+\begin{tabular}{|c|c|c|c|c|}\hline
+表内文字 & \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} \\\hline
+Text & & & & \\\hline
+& & & & \\\hline
+\end{tabular}
+\par
+\begin{minipage}{68truemm}
+\scriptsize%
+図表説明（左）□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□表の左右は，75mm以内□□□□□□□□□□□。
+\end{minipage}
+\end{table}
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
+□□□□□□□（\tabref{tab:nidanfloat:example}参照）。
+
+\begin{table*}[t]
+\centering
+\caption{Title.}
+\label{tab:nidanfloat:example}
+\tabcolsep=1.5truemm
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
+表内文字 & \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} &  \hspace{4zw} \\\hline
+Text & & & & & & & & & & \\\hline
+& & & & & & & & & & \\\hline
+\end{tabular}
+\par
+\begin{minipage}{\hsize}
+\scriptsize\centering%
+図表説明（中央）□□□□□□表の左右は，165mm以内□□□□□□
+\end{minipage}
+\end{table*}
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□（\figref{fig:example}参照）。
+
+%% 貼るためのeps画像をtexから作成 %%
+\bgroup
+\catcode37=11
+\gdef\percentcharacter{%}
+\egroup
+\newwrite\fout%
+\immediate\openout\fout=ieejtec2figure.eps%
+\immediate\write\fout{\percentcharacter !PS-Adobe-3.0 EPSF-3.0}%
+\immediate\write\fout{\percentcharacter\percentcharacter BoundingBox: 0 0 100 60}%
+\immediate\write\fout{gsave}%
+\immediate\write\fout{1 setlinewidth}%
+\immediate\write\fout{gsave 0.75 setgray 0.25 setlinewidth}%
+\immediate\write\fout{newpath 0 15 moveto 100 0 rlineto stroke}%
+\immediate\write\fout{newpath 0 30 moveto 100 0 rlineto stroke}%
+\immediate\write\fout{newpath 0 45 moveto 100 0 rlineto stroke}%
+\immediate\write\fout{grestore}%
+\immediate\write\fout{newpath 0 0 moveto 100 50 lineto stroke}%
+\immediate\write\fout{newpath 100 0 moveto 0 0 lineto 0 60 lineto stroke}%
+\immediate\write\fout{grestore}%
+\immediate\write\fout{\percentcharacter\percentcharacter EOF}%
+\immediate\closeout\fout%
+%% ここまで %%
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=70truemm]{ieejtec2figure.eps}
+\par
+(a) Graph 1.
+\caption{Title.}
+\label{fig:example}
+\end{figure}
+
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+本文□□□□□□□□□□□□□□□□□□□□□□□
+□□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
+\begin{thebibliography}{99}
+\bibitem{IEEJformat}
+原稿の書き方$\mid$一般社団法人 電気学会, \\
+\verb|http://www.iee.jp/?page_id=4843| (2018年7月20日閲覧)
+\bibitem{bib2}
+Name : “Title English”, 雑誌名, Vol.巻数, No.号数 p.000 (発行年)\\
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 p.ページ数 (発行年)
+\bibitem{bib3}
+Name and Name : “Title Eng”, 雑誌名, Vol.巻数, No.号数 pp.000-000 (発行年)\\
+著書名・著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib4}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib5}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib6}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib7}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib8}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib9}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib10}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\bibitem{bib11}
+著書名：「タイトル」，雑誌名，Vol.巻数，No.号数 pp.ページ数 (発行年)
+\end{thebibliography}
+
+
+\end{document}
