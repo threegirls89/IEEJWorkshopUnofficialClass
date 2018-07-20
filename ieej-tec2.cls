@@ -934,7 +934,10 @@
     \fi
    \fi%
   \egroup
+  \vspace{\baselineskip}% 1行アキ
+  \mbox{}
   \end{minipage}%
+
  }%
   %%
   \@tempdima \ht\@tempboxa
