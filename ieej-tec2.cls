@@ -2018,4 +2018,9 @@
 \else
   \@mparswitchfalse
 \fi
+%
+%%%% 文書にハードコーディングされていたのを移設
+\hoffset=-1.0in% 左へ 1.0インチ版面全体を移動
+\voffset=-1.0in% 上へ 1.0インチ版面全体を移動
+%
 \endinput
