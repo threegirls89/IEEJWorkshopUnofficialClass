@@ -91,7 +91,8 @@
 \DeclareOption{twocolumn}{\@twocolumntrue}
 \DeclareOption{leqno}{\input{leqno.clo}}
 \DeclareOption{fleqn}{% \input{fleqn.clo}
- \ieejtec@warning{fleqn is incorporated into this class file}}
+  %\ieejtec@warning{fleqn is incorporated into this class file}}
+  \typeout{fleqn is incorporated into this class file}}% warningが出ると心臓に悪いので
 \DeclareOption{openbib}{%
   \AtEndOfPackage{%
    \renewcommand\@openbib@code{%
@@ -977,13 +978,13 @@
  \renewcommand{\thesubsection}{\thesection.\@arabic\c@subsection}
  \renewcommand{\thesubsubsection}{\thesubsection.\@arabic\c@subsubsection}
 \else
- \def\thesubsection{\protect\leavevmode
-  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsection\kern0pt\hbox to .5zw{〉\hss}}
- \def\thesubsubsection{\protect\leavevmode
-  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsubsection\kern0pt\hbox to .5zw{〉\hss}}
+  \def\thesubsection{\protect\leavevmode
+    \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
+    \@arabic\c@subsection\kern0pt\hbox to .5zw{〉\hss}}
+  \def\thesubsubsection{\protect\leavevmode
+    \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
+    \@arabic\c@subsection\hbox to .5zw{\hss ・\hss}%
+    \@arabic\c@subsubsection\kern0pt\hbox to .5zw{〉\hss}}
 \fi
 \renewcommand{\theparagraph}{\@arabic\c@paragraph}
 \renewcommand{\thesubparagraph}{\@arabic\c@subparagraph}
@@ -1046,33 +1047,12 @@
  \fi
   \@tempskipa #5\relax
   \ifdim \@tempskipa<\z@
-   \ifjidori
-    \setbox\@tempboxa\hbox{\inhibitglue #8}%
-    \ifdim \wd\@tempboxa < 4zw
-     \def\@svsechd{#6{\hskip #3\relax \@svsec \kintou{4zw}{\inhibitglue #8}}}%
-    \else
-     \def\@svsechd{#6{\hskip #3\relax \@svsec\inhibitglue #8}}%
-    \fi
-   \else
     \def\@svsechd{#6{\hskip #3\relax \@svsec\inhibitglue #8}}%
-   \fi
   \else
    \begingroup
     #6{%
-     \ifjidori
-      \@tempdima4zw
-      \setbox\@tempboxa\hbox{\inhibitglue #8}%
-      \ifdim \wd\@tempboxa < \@tempdima
-       \@hangfrom{\hskip #3\relax\@svsec}%
-        \interlinepenalty\@M\kintou{\@tempdima}{\inhibitglue #8}\@@par
-      \else
-       \@hangfrom{\hskip #3\relax\@svsec}\interlinepenalty\@M
-         \inhibitglue #8\@@par
-      \fi
-     \else
       \@hangfrom{\hskip #3\relax\@svsec}\interlinepenalty\@M
-       \inhibitglue #8\@@par
-     \fi
+       \inhibitglue #8\@@par%
       }%
    \endgroup
   \fi
@@ -1084,30 +1064,11 @@
 \def\@ssect#1#2#3#4#5{%
   \@tempskipa #3\relax
   \ifdim \@tempskipa<\z@
-   \ifjidori
-    \setbox\@tempboxa\hbox{#5}%
-    \ifdim \wd\@tempboxa < 4zw
-     \def\@svsechd{#4{\hskip #1\relax \kintou{4zw}{#5}}}%
-    \else
-     \def\@svsechd{#4{\hskip #1\relax #5}}%
-    \fi
-   \else
     \def\@svsechd{#4{\hskip #1\relax #5}}%
-   \fi
   \else
    \begingroup
     #4{%
-    \ifjidori
-     \@tempdima4zw
-     \setbox\@tempboxa\hbox{#5}%
-     \ifdim \wd\@tempboxa < \@tempdima
-      \@hangfrom{\hskip #1}\interlinepenalty \@M \kintou{\@tempdima}{#5}\@@par
-     \else
-      \@hangfrom{\hskip #1}\interlinepenalty \@M #5\@@par
-     \fi
-    \else
-     \@hangfrom{\hskip #1}\interlinepenalty \@M #5\@@par
-    \fi
+     \@hangfrom{\hskip #1}\interlinepenalty \@M #5\@@par%
     }%
    \endgroup
   \fi
@@ -1144,11 +1105,11 @@
 
 %\def\@seccntformat#1{\csname the#1\endcsname\hskip1zw}
 
-\newcommand{\section}{\@startsection{section}{1}{0zw}%
-   {\z@ \@plus.2\Cvs \@minus.05\Cvs}%
-   {\z@ \@plus.1\Cvs \@minus.05\Cvs}%
-   {\reset@font\small\bfseries\mathversion{bold}}}
-\newcommand{\subsection}{\@startsection{subsection}{2}{0zw}%
+\newcommand{\section}{\@startsection{section}{1}{1zw}%
+   {7\p@ \@plus.2\Cvs \@minus.05\Cvs}%
+   {7\p@ \@plus.1\Cvs \@minus.05\Cvs}%
+   {\reset@font\normalsize\bfseries\mathversion{bold}}}
+\newcommand{\subsection}{\@startsection{subsection}{2}{1zw}%
    {\z@ \@plus.2\Cvs \@minus.05\Cvs}%
    {-2zw}%
    {\reset@font\small\bfseries\mathversion{bold}}}
