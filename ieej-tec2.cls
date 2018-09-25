@@ -840,15 +840,15 @@
 \newbox\e@keywordbox
 \def\abstract{\global\setbox\@abstractbox\hbox\bgroup
  \ignorespaces}
-\def\endabstract{\egroup}
+\def\endabstract{\unskip\egroup}
 
 \def\jkeyword{\global\setbox\j@keywordbox\hbox\bgroup
  \ignorespaces}
-\def\endjkeyword{\egroup}
+\def\endjkeyword{\unskip\egroup}
 
 \def\ekeyword{\global\setbox\e@keywordbox\hbox\bgroup
  \ignorespaces}
-\def\endekeyword{\egroup}
+\def\endekeyword{\unskip\egroup}
 
 \if@english 
  \let\keyword\jkeyword
