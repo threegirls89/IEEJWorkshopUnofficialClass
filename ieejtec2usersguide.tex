@@ -1,0 +1,253 @@
+\documentclass[platex,fleqn]{ieej-tec2}% documentclassの宣言で処理エンジンを指定する。fleqnは数式左寄せのため
+\usepackage{amsmath,amssymb,bm}% ams-LaTeXの色々を使う
+\usepackage[dvipdfmx]{graphicx,color}% 
+\usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
+%
+% 論文番号（1頁目右上にあるやつ）
+\論文番号{TEX-18-001}
+%
+% 日本語タイトル
+\jtitle{電気学会研究会\LaTeX{}スタイルファイルの使用方法}
+%
+% 英語タイトル
+\etitle{User's Guide of unofficial \LaTeX{} class file for IEEJ workshop.}
+% 
+% 著者リスト
+\authorlist{%
+ \authorentry*{三好　正太}{Shota Miyoshi}{1} %発表者は*をつける \authorentry{日本語名}{英語名}{後述の\affiliateとの関連付け番号}
+}
+% 
+% 所属 [authorentryとの関連付け番号]
+\affiliate[1]
+ {東京大学}
+ {The University of Tokyo}
+%
+% 和文キーワード
+\begin{jkeyword}
+らてふ，クラスファイル，電気学会研究会
+\end{jkeyword}
+%
+%英文キーワード。
+\begin{ekeyword}
+\LaTeX{}, class file, IEEJ workshop
+\end{ekeyword}
+%
+% 参照いろいろ（ieej-tec2の内容から外れると思うので直接書き。要望あればieej-tec2.clsに移します）
+\def\tabref#1{\tablename\ref{#1}}
+\def\figref#1{\figurename\ref{#1}}
+\def\secref#1{\ref{#1}節}
+\def\formref#1{\eqref{#1}式}
+% back slash
+\newcommand{\bs}{\texttt{\symbol{'134}}}
+%
+%%%%%%%%%%%%%%%% preambleここまで %%%%%%%%%%%%%%%%
+%
+\begin{document}
+%
+% abstractは\begin{document}と\maketitleの間に書く
+\begin{abstract}
+The class file \texttt{ieej-tec2.cls} has been developed for typesetting articles of IEEJ workshop.
+The official class file for the workshop used to exist, however it is no longer available.
+Now it becomes a very big problem for \TeX nicians.
+I inherited the class file for the workshop from my boss, 
+and editted some codes in order to achieve higher fidelity to the official MS word template.
+Happy \TeX ing!!
+\end{abstract}
+\maketitle
+%
+%%%%%%%%%%%%%%%% ここから本文 %%%%%%%%%%%%%%%%
+%
+\section{はじめに}
+\LaTeX{}とは高品位で美しい組版を様々なプラットフォームで再現性高く実現する組版ソフトウェアであり，多くの研究者に愛用されている。
+
+電気学会研究会とは，電気学会の下部組織である研究調査委員会が主催する研究発表の場である。
+研究調査委員会は研究分野によりA--E部門に大別され，各部門について分野の小分類により数種ずつ存在する。
+研究会においては，その分野に沿った様々な事項について手法の考案，現象の調査，実験等を行ったことの内容の報告，議論が行われる。
+電気学会全国大会や部門大会が研究の成果を誇示する場であるのとは対照的に，何かを行ったことに対し議論を交わす場とみなされる。
+電気，電子系を専門分野とする研究者，学生であれば，電気学会研究会に論文を投稿する機会が複数回あるだろう。
+
+電気学会研究会原稿の書き方のwebページ\cite{IEEJformat}を閲覧すると，pdfファイルによる書き方の見本とdocファイルによるテンプレートが利用可能である。
+一方で，\LaTeX{}によるテンプレートは，かつては存在したと伝聞しているが，2018年現在では公式のものは存在しない。
+
+筆者は，かつて公開されていた電気学会研究会\LaTeX クラスファイルを基に某氏により作成されたクラスファイルを指導教員より譲り受けた。
+そのクラスファイルは概ね公式に公開されているMS wordのテンプレートに近い見た目を出力したが，細部は似ても似つかないものであった。
+そこで，筆者はクラスファイルを編集し，より忠実度の高い見た目を持つように改良を行った。
+
+本稿では，筆者が改良を行ったクラスファイルの使用方法を説明する。
+\LaTeX{}を使い論文を書く読者たちの論文執筆の一助になれば幸いである。
+
+\section{使用方法}
+本クラスファイルの使用方法を説明する。
+
+\subsection{準備}
+筆者のgithubをclone or downloadすると得られるファイルは次の通りである。
+\begin{enumerate}
+    \item \texttt{ieej-tec2.cls}
+    \item \texttt{ieejtec2example.tex}
+    \item \texttt{ieejtec2example.pdf}
+    \item \texttt{ieejtec2usersguide.tex}
+    \item \texttt{ieejtec2usersguide.pdf}
+\end{enumerate}
+この内，\texttt{ieej-tec2.cls}がクラスファイル本体であり，\texttt{ieejtec2example.tex}は使用例，\texttt{ieejtec2usersguide.tex}は本稿である。
+
+本クラスファイルを利用するには，\texttt{ieej-tec2.cls}\textbf{をtexmfツリーの適当な場所，或いは執筆原稿と同じディレクトリに置く。}
+
+\subsection{クラスファイルの宣言とオプション引数}
+本クラスファイルを使用するための宣言は，原稿texファイルの先頭に
+\begin{verbatim}
+  \documentclass[オプション]{ieej-tec2}
+\end{verbatim}
+と書く。
+
+利用可能なオプション引数の内，使用頻度の高いと思われるものを示す。
+ここに示したもの以外は著しく使用頻度が低いと思われるが，興味のある読者はクラスファイルにおいてDeclareOptionで検索すると，全てのオプションの記述を見られる。
+\begin{description}
+\item[english]
+原稿を英文で書く場合に指定する。
+
+\item[nojcaption]
+原稿を和文で書く場合，デフォルトでは図表のキャプションは日英併記であるが，これを英文のみにする場合に指定する。
+
+\item[fleqn]
+数式を左寄せにする場合に指定する。
+
+\item[platex]
+\textbf{デフォルトで指定されている。}platexで組版する場合に指定する。
+
+\item[uplatex]
+uplatexで組版する場合に指定する。
+
+\item[latexbibstyle]
+参考文献の見出しを\LaTeX のデフォルトにする場合に指定する。指定しない場合は電気学会研究会公式に似せた書式になる。
+\end{description}
+
+\subsection{タイトル周りのコマンド}
+\textbf{\bs 論文番号}から\textbf{\bs ekeyword}まではプリアンブル（\textbf{\bs documentclass}と\textbf{\bs begin\{document\}}の間）に記入する。
+\textbf{\bs maketitle}，\textbf{abstract}環境は本文中（\textbf{\bs begin\{document\}}以下）に記述する。
+
+\begin{description}
+\item[\bs 論文番号]
+第1ページ右上の論文番号を入力する。
+\begin{verbatim}
+ \論文番号{番号}
+\end{verbatim}
+の形で書く。
+
+\item[\bs jtitle]
+日本語タイトルを入力する。
+\begin{verbatim}
+ \jtitle{日本語タイトル}
+\end{verbatim}
+の形で書く。
+   
+\item[\bs etitle]
+英語タイトルを入力する。
+\begin{verbatim}
+ \etitle{英語タイトル}
+\end{verbatim}
+の形で書く。
+   
+\item[\bs authorlist, \bs authorentry]
+著者リストを入力する。次の形で入力する。
+\begin{verbatim}
+ \authorlist{%
+ \authorentry*{日本語著者名1}{英語著者名1}{番号}
+ \authorentry{日本語著者名2}{英語著者名2}{番号}
+ ...
+ \authorentry{日本語著者名n}{英語著者名n}{番号}
+ }
+\end{verbatim}
+\textbf{\bs authorentry}の1つのエントリーは
+\begin{verbatim}
+ \authorentry{日本語著者名}{英語著者名}%
+   {\affiliateとの関連付け番号}
+\end{verbatim}
+と入力する。
+\textbf{\bs affiliate}との関連付け番号については，\textbf{\bs affiliate}で設定した番号の所属がその著者の所属として表示される。
+また，\textbf{\bs authorentry*}とアステリスクを付加すると，著者名末尾にアステリスクが付加される。
+
+\item[\bs affiliate]
+所属を入力する。
+\begin{verbatim}
+ \affiliate[番号]{日本語所属名}{英語所属名}
+\end{verbatim}
+の形で書く。
+番号は1から順に自然数を設定する。
+\textbf{\bs affiliate}で設定する番号を\textbf{\bs authorentry}で設定すると，番号に対応する所属がその著者の所属として表示される。
+
+\item[\bs breakaffiliate]
+所属毎の著者名の改行を設定する。
+\begin{verbatim}
+ \breakaffiliate{番号}
+\end{verbatim}
+の形で設定する。
+\textbf{\bs breakaffiliate\{\textit{thenumber}\}}は，\textbf{\bs affiliate}との関連付け番号が\textit{thenumber}までの著者を同じ行に，thenumber+1以降の人を改行して表示する。
+
+例えば，
+\begin{verbatim}
+ \authorlist{\authorentry*{何樫}{Nanigashi}[1]
+   \authorentry{垂逸}{Taresore}[2] 
+   \authorentry{甘木}{Amagi}[3]}
+ \affiliate[1]{某某大学}{an university}
+ \affiliate[2]{某某研究所}{a laboratory}
+ \affiliate[3]{某某株式会社}{a company}
+ \breakaffiliate{2}        
+\end{verbatim}
+とすると\textbf{\bs affiliate}の番号が1, 2である何樫と垂逸は同じ行に表示される。
+
+\item[\bs jkeyword]
+日本語キーワードを入力する。
+\begin{verbatim}
+ \jkeyword{日本語キーワード}
+\end{verbatim}
+の形で書く。
+
+\item[\bs ekeyword]
+英語キーワードを入力する。
+\begin{verbatim}
+ \ekeyword{英語キーワード}
+\end{verbatim}
+の形で書く。
+
+\item[\bs maketitle]
+タイトルを出力する。
+\begin{verbatim}
+ \maketitle
+\end{verbatim}
+の形で書く。
+
+\item[abstract環境]
+概要を出力する。
+\begin{verbatim}
+ \begin{abstract}
+   概要
+ \end{abstract}
+\end{verbatim}
+の形で書く。
+
+\end{description}
+
+\subsection{図表周りのコマンド}
+基本的にはデフォルトの\LaTeX コマンドと変わらない。
+本クラスファイルで追加されるコマンドに\textbf{\bs ecaption}がある。
+
+\begin{description}
+\item[\bs ecaption]
+原稿を和文で書く際に英文のキャプションを入力する。
+\begin{verbatim}
+ \ecaption{英文キャプション}
+\end{verbatim}
+の形で書く。
+クラスファイルの宣言時にオプションnojcaptionを指定すると無視される。
+
+\end{description}
+
+
+\begin{thebibliography}{99}
+\bibitem{IEEJformat}
+原稿の書き方$\mid$一般社団法人 電気学会, \\
+\verb|http://www.iee.jp/?page_id=4843| (2018年7月20日閲覧)
+\end{thebibliography}
+
+
+\end{document}
