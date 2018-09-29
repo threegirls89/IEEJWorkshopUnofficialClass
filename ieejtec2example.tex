@@ -63,7 +63,6 @@ The ○○○○○○○○○○○○○○○○○○○○○○○○○�
 ○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○○.
 \end{abstract}
 \maketitle
-
 %
 %%%%%%%%%%%%%%%% ここから本文 %%%%%%%%%%%%%%%%
 %
@@ -124,7 +123,8 @@ Z &= X + Y \times \frac AB
 
 \begin{table}[b]
 \centering
-\caption{Title.}
+\caption{タイトル}
+\ecaption{Title.}
 \label{tab:example}
 \tabcolsep=1.5truemm
 \begin{tabular}{|c|c|c|c|c|}\hline
@@ -151,7 +151,8 @@ Text & & & & \\\hline
 
 \begin{table*}[t]
 \centering
-\caption{Title.}
+\caption{タイトル}
+\ecaption{Title.}
 \label{tab:nidanfloat:example}
 \tabcolsep=1.5truemm
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
@@ -160,6 +161,7 @@ Text & & & & & & & & & & \\\hline
 & & & & & & & & & & \\\hline
 \end{tabular}
 \par
+% 図表説明の入れ方がハードコーディングなのはご愛嬌
 \begin{minipage}{\hsize}
 \scriptsize\centering%
 図表説明（中央）□□□□□□表の左右は，165mm以内□□□□□□
@@ -204,7 +206,8 @@ Text & & & & & & & & & & \\\hline
 \includegraphics[width=70truemm]{ieejtec2figure.eps}
 \par
 (a) Graph 1.
-\caption{Title.}
+\caption{タイトル}
+\ecaption{Title.}
 \label{fig:example}
 \end{figure}
 

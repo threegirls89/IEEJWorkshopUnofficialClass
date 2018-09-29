@@ -43,6 +43,8 @@
 
 \newif\if@english \@englishfalse
 \DeclareOption{english}{\@englishtrue}
+\newif\if@nojcaption \@nojcaptionfalse
+\DeclareOption{nojcaption}{\@nojcaptiontrue}
 
 \newcounter{@paper}
 \newcommand{\@ptsize}{}
@@ -1140,6 +1142,10 @@
  \fi
  \def\fnum@efigure{app.\,Fig.\,\thefigure.}%
  \def\fnum@etable{app.\,Table~\thetable.}%
+ \if@nojcaption
+ \let\fnum@figure\fnum@efigure
+ \let\fnum@table\fnum@etable
+ \fi
  %%
  \if@english
   \section*{\centering Appendix}
@@ -1402,7 +1408,7 @@
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
-\def\fnum@figure{\figurename~\thefigure.}
+\def\fnum@figure{\figurename\thefigure\if@nojcaption.\fi}
 \def\fnum@efigure{Fig.\,\thefigure.}
 \newenvironment{figure}
                {\@floatenv\capwidth.9\columnwidth\ecapwidth.9\columnwidth
@@ -1417,7 +1423,7 @@
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
-\def\fnum@table{\tablename~\thetable.}
+\def\fnum@table{\tablename\thetable\if@nojcaption.\fi}
 \def\fnum@etable{Table~\thetable.}
 \newenvironment{table}
                {\@floatenv\capwidth.9\columnwidth\ecapwidth.9\columnwidth
@@ -1514,6 +1520,7 @@
 \if@english
  \let\caption\ecaption
 \fi
+\if@nojcaption\let\ecaption\@gobble\fi
 
 \setlength\arraycolsep{5\p@}
 \setlength\tabcolsep{.5zw}% 6\p@
@@ -1806,8 +1813,13 @@
 %%\newcommand{\listtablename}{表 目 次}
 \newcommand{\refname}{参考文献}
 %%\newcommand{\indexname}{索 引}
-\newcommand{\figurename}{Fig.~}
+\if@nojcaption
+\newcommand{\figurename}{Fig.\,}
 \newcommand{\tablename}{Table~}
+\else
+\newcommand{\figurename}{図}
+\newcommand{\tablename}{表}
+\fi
 %%\newcommand{\appendixname}{付 録}
 %%\newcommand{\abstractname}{概 要}
 
