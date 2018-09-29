@@ -1024,9 +1024,6 @@
 \def\subsectionnum@font{\sffamily}
 \def\dotafter@section{.}
 
-\newif\ifjidori
-\if@english\jidorifalse\else\jidoritrue\fi
-
 %% \ifdim \@tempskipa>\z@ --> \ifdim \@tempskipa<\z@
 %% \@sect{NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}[ARG1]{ARG2}
 \def\@sect#1#2#3#4#5#6[#7]#8{%
@@ -1585,8 +1582,21 @@
 
 \newenvironment{thebibliography}[1]
  {\raggedbottom
-  \vskip\Cvs
-  \section*{\refname}%
+  \if@ieejbibstyle
+    \vskip 2\Cvs plus \z@ minus \Cvs
+    \hbox to \hsize{\hfil\normalsize\bfseries\centering 文\hskip 3zw 献\hfil}
+    \if@jsc@uplatex
+    \vskip 8.875\p@
+    \hrule height 0.25\p@ depth 0.125\p@
+    \vskip 8.875\p@%
+    \else
+      \vskip 8.375\p@
+      \hrule height 0.25\p@ depth 0.125\p@
+      \vskip 9.375\p@%
+    \fi
+  \else
+    \section*{\refname}%
+  \fi
   \footnotesize
    \list{\if@english (\hfil\@arabic\c@enumiv\hfil )\else
      \leavevmode\hbox to .5zw{\hss （}\hfil\@arabic\c@enumiv\hfil
@@ -1735,6 +1745,9 @@
 \DeclareOption{leftjust}{\let\@eqnsel\hfil}
 \DeclareOption{nocolsep}{\let\DEQ@acs\null}
 \ExecuteOptions{nocolsep}% {leftjust}% 
+\newif\if@ieejbibstyle
+\@ieejbibstyletrue
+\DeclareOption{latexbibstyle}{\@ieejbibstylefalse}
 \ProcessOptions
 %% </borrowed from dotseqn.sty>
 
