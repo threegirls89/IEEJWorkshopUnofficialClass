@@ -540,9 +540,9 @@
  \let\@evenfoot\@oddfoot
 }
 
-\def\論文番号#1{\gdef\Paper@No{#1}}
+\long\def\論文番号#1{\long\gdef\Paper@No{#1}}
 \def\Paper@No{}
-\def\@Paper@No{\smash{\raise28mm\hbox{\footnotesize\Paper@No}}}
+\def\@Paper@No{\smash{\raise28mm\vtop{\raggedleft\footnotesize\Paper@No}}}
 
 \def\jtitle#1{\gdef\@jtitle{#1}}
 \def\@jtitle{}

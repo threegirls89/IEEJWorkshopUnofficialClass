@@ -4,7 +4,7 @@
 \usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
 %
 % 論文番号（1頁目右上にあるやつ）
-\論文番号{xx-xx-xx}
+\論文番号{xx-xx-xx \par yy-yy-yy}
 %
 % 日本語タイトル
 \jtitle{電気学会研究会\LaTeX{}スタイルファイルに関する研究}
@@ -14,21 +14,17 @@
 % 
 % 著者リスト
 \authorlist{%
- \authorentry*{三好　正太}{Shota Miyoshi}{1} %発表者は*をつける \authorentry{日本語名}{英語名}{後述の\affiliateとの関連付け番号}
- \authorentry{電子　太郎}{Taro Denshi}{2}
- \authorentry{電子　二郎}{Jiro Denshi}{2}
- \authorentry{電子　三郎}{Saburo Denshi}{3}
- \authorentry{電子　四郎}{Shiro Denshi}{3}
+  \authorentry{電子　太郎}{Taro Denshi}{1}
+ \authorentry{電子　二郎}{Jiro Denshi}{1}
+ \authorentry{電子　三郎}{Saburo Denshi}{2}
+ \authorentry{電子　四郎}{Shiro Denshi}{2}
 }
 % 
 % 所属 [authorentryとの関連付け番号]
 \affiliate[1]
- {東京大学}
- {The University of Tokyo}
-\affiliate[2]
  {日本電機大学}
  {Nihon Denki University}
-\affiliate[3]
+\affiliate[2]
  {日本電力}
  {Nihon Electric Power Company}
 %
