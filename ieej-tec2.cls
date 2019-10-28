@@ -525,8 +525,12 @@
 \def\ps@plain{%
  \let\@mkboth\@gobbletwo
  \def\@oddhead{\@LH\hfil\@RH}%
- \def\@oddfoot{\@LB\hfil
-  {\footnotesize\thepage/\pageref{ieej-tec@lastpage}}\@RB}%
+ \if@pagenumber%
+  \def\@oddfoot{\@LB\hfil
+   {\footnotesize\thepage/\pageref{ieej-tec@lastpage}}\@RB}%
+  \else%
+   \def\oddfoot{}
+  \fi%
  \let\@evenhead\@oddhead
  \let\@evenfoot\@oddfoot
 }
@@ -535,8 +539,12 @@
  \let\@mkboth\@gobbletwo
  \def\@oddhead{\@LH\hfil\@Paper@No\@RH}%
  \let\@evenhead\@oddhead
- \def\@oddfoot{\@LB\hfil
-  {\footnotesize\thepage/\pageref{ieej-tec@lastpage}}\@RB}%
+ \if@pagenumber%
+  \def\@oddfoot{\@LB\hfil
+   {\footnotesize\thepage/\pageref{ieej-tec@lastpage}}\@RB}%
+  \else%
+   \def\oddfoot{}
+  \fi%
  \let\@evenfoot\@oddfoot
 }
 
@@ -1755,6 +1763,9 @@
 \newif\if@ieejbibstyle
 \@ieejbibstyletrue
 \DeclareOption{latexbibstyle}{\@ieejbibstylefalse}
+\newif\if@pagenumber
+\@pagenumbertrue
+\DeclareOption{nopagenumber}{\@pagenumberfalse}
 \ProcessOptions
 %% </borrowed from dotseqn.sty>
 
