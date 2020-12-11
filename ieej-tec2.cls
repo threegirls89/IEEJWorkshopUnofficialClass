@@ -12,7 +12,7 @@
 % v2.2 \enumerateのパラメタ変更。TM_paper_stylefile_word.docに似せる
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ieej-tec2}%
-[2018/05/07 v2.2, modified by S.Miyoshi by using Okumura's `jsarticle.cls']
+[2020/12/11 v2.3, modified by S.Miyoshi by using Okumura's `jsarticle.cls']
 %[2016/10/25 v2.1, modified by C.Muto by using Okumura's `jsarticle.cls']
 %[2014/09/07 v2.0, modified by C.Muto by using Okumura's `jsarticle.cls']
 %  [2005/11/07 v1.0 for ieej-tec]
@@ -45,7 +45,14 @@
 \DeclareOption{english}{\@englishtrue}
 \newif\if@nojcaption \@nojcaptionfalse
 \DeclareOption{nojcaption}{\@nojcaptiontrue}
-
+\newif\if@ieejbibstyle
+\@ieejbibstyletrue
+\DeclareOption{latexbibstyle}{\@ieejbibstylefalse}
+\newif\if@pagenumber
+\@pagenumbertrue
+\DeclareOption{nopagenumber}{\@pagenumberfalse}
+%
+%
 \newcounter{@paper}
 \newcommand{\@ptsize}{}
 \newif\if@restonecol
@@ -59,15 +66,11 @@
 \if@NTT\else
  \newif\if@enablejfam \@enablejfamtrue
 \fi
-\DeclareOption{a4paper}{\setcounter{@paper}{1}%
-  \setlength\paperheight {297mm}%
-  \setlength\paperwidth  {210mm}}
-%%\DeclareOption{a4j}{\setcounter{@paper}{1}%\@stysizetrue
-%%  \setlength\paperheight {297mm}%
-%%  \setlength\paperwidth  {210mm}}
-\DeclareOption{10pt}{\renewcommand{\@ptsize}{0}}
-\DeclareOption{11pt}{\renewcommand{\@ptsize}{1}}
-\DeclareOption{12pt}{\renewcommand{\@ptsize}{2}}
+% a4paper
+\setcounter{@paper}{1}%
+\setlength\paperheight {297mm}%
+\setlength\paperwidth  {210mm}%
+\renewcommand{\@ptsize}{0}
 \DeclareOption{tombow}{%
   \tombowtrue \tombowdatetrue
   \setlength{\@tombowwidth}{.1\p@}%
@@ -83,18 +86,7 @@
   \tombowtrue \tombowdatefalse
   \setlength{\@tombowwidth}{\z@}%
   \maketombowbox}
-\DeclareOption{tate}{%
-  \AtBeginDocument{\tate\message{《縦組モード》}%
-                   \adjustbaseline}%
-}
-\DeclareOption{oneside}{\@twosidefalse}
-\DeclareOption{twoside}{\@twosidetrue}
-\DeclareOption{onecolumn}{\@twocolumnfalse}
-\DeclareOption{twocolumn}{\@twocolumntrue}
 \DeclareOption{leqno}{\input{leqno.clo}}
-\DeclareOption{fleqn}{% \input{fleqn.clo}
-  %\ieejtec@warning{fleqn is incorporated into this class file}}
-  \typeout{fleqn is incorporated into this class file}}% warningが出ると心臓に悪いので
 \DeclareOption{openbib}{%
   \AtEndOfPackage{%
    \renewcommand\@openbib@code{%
@@ -107,55 +99,25 @@
 \DeclareOption{disablejfam}{\@enablejfamfalse}
 \DeclareOption{draft}{\setlength\overfullrule{5pt}}
 \DeclareOption{final}{\setlength\overfullrule{0pt}}
-\newif\ifwinjis
-\winjisfalse
-\newif\ifmingoth
-\mingothfalse
-\newif\ifjisfont
-\jisfontfalse
 \newif\if@jsc@uplatex
 \@jsc@uplatexfalse
-\DeclareOption{mingoth}{\mingothtrue}
-\DeclareOption{winjis}{\winjistrue}
-\DeclareOption{jis}{\jisfonttrue}
-\DeclareOption{uplatex}{\@jsc@uplatextrue\winjisfalse}
+\DeclareOption{uplatex}{\@jsc@uplatextrue}
 \def\jsc@JYn{\if@jsc@uplatex JY2\else JY1\fi}
 \def\jsc@JTn{\if@jsc@uplatex JT2\else JT1\fi}
 \def\jsc@pfx@{\if@jsc@uplatex u\else \fi}
-\ExecuteOptions{a4paper,10pt,oneside,twocolumn,final,mentuke}
+\ExecuteOptions{fleqn,final,mentuke}
 \ProcessOptions\relax
-
-\ifwinjis
-  \DeclareFontShape{JY1}{mc}{m}{n}{<-> s * [1.0392687] winjis}{}
-  \DeclareFontShape{JY1}{gt}{m}{n}{<-> s * [1.0392687] winjisg}{}
-  \DeclareFontShape{JT1}{mc}{m}{n}{<-> s * [1.0392687] winjis-v}{}
-  \DeclareFontShape{JT1}{gt}{m}{n}{<-> s * [1.0392687] winjisg-v}{}
+%% フォント周りの設定
+\if@jsc@uplatex
+  \DeclareFontShape{JY2}{mc}{m}{n}{<-> s * [0.961] upjisr-h}{}
+  \DeclareFontShape{JY2}{gt}{m}{n}{<-> s * [0.961] upjisg-h}{}
+  \DeclareFontShape{JT2}{mc}{m}{n}{<-> s * [0.961] upjisr-v}{}
+  \DeclareFontShape{JT2}{gt}{m}{n}{<-> s * [0.961] upjisg-v}{}
 \else
-  \ifmingoth
-    \DeclareFontShape{\jsc@JYn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ min10}{}
-    \DeclareFontShape{\jsc@JYn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ goth10}{}
-    \DeclareFontShape{\jsc@JTn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tmin10}{}
-    \DeclareFontShape{\jsc@JTn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tgoth10}{}
-  \else
-    \ifjisfont
-      \DeclareFontShape{\jsc@JYn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jis}{}
-      \DeclareFontShape{\jsc@JYn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jisg}{}
-      \DeclareFontShape{\jsc@JTn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tmin10}{}
-      \DeclareFontShape{\jsc@JTn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tgoth10}{}
-    \else
-      \if@jsc@uplatex
-        \DeclareFontShape{JY2}{mc}{m}{n}{<-> s * [0.961] upjisr-h}{}
-        \DeclareFontShape{JY2}{gt}{m}{n}{<-> s * [0.961] upjisg-h}{}
-        \DeclareFontShape{JT2}{mc}{m}{n}{<-> s * [0.961] upjisr-v}{}
-        \DeclareFontShape{JT2}{gt}{m}{n}{<-> s * [0.961] upjisg-v}{}
-      \else
-        \DeclareFontShape{\jsc@JYn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jis}{}
-        \DeclareFontShape{\jsc@JYn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jisg}{}
-        \DeclareFontShape{\jsc@JTn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tmin10}{}
-        \DeclareFontShape{\jsc@JTn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tgoth10}{}
-      \fi
-    \fi
-  \fi
+  \DeclareFontShape{\jsc@JYn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jis}{}
+  \DeclareFontShape{\jsc@JYn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ jisg}{}
+  \DeclareFontShape{\jsc@JTn}{mc}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tmin10}{}
+  \DeclareFontShape{\jsc@JTn}{gt}{m}{n}{<-> s * [1.0392687] \jsc@pfx@ tgoth10}{}
 \fi
 \DeclareFontShape{\jsc@JYn}{mc}{m}{it}{<->ssub*mc/m/n}{}
 \DeclareFontShape{\jsc@JYn}{mc}{m}{sl}{<->ssub*mc/m/n}{}
@@ -178,60 +140,6 @@
 % 7pt (6.7355pt)  →  (6.7355  x [1.0392687] = 7.00005pt)
 % 5pt (4.81108pt) →  (4.81108 x [1.0392687] = 5.00003pt)
 %
-%\if@usejistfm
-%\DeclareFontShape{JY1}{mc}{m}{n}{%
-%  <-> s * [1.0392687] jis
-%}{}
-%\DeclareFontShape{JY1}{mc}{bx}{n}{%
-%  <-> s * [1.0392687] jisg
-%}{}
-%\DeclareFontShape{JY1}{gt}{m}{n}{%
-%  <-> s * [1.0392687] jisg
-%}{}
-%\DeclareFontShape{JY1}{gt}{bx}{n}{%
-%  <-> s * [1.0392687] jisg
-%}{}
-%\else
-%\DeclareFontShape{JY1}{mc}{m}{n}{%
-%  <-> s * [1.0392687] min10
-%}{}
-%\DeclareFontShape{JY1}{mc}{bx}{n}{%
-%  <-> s * [1.0392687] goth10
-%}{}
-%\DeclareFontShape{JY1}{gt}{m}{n}{%
-%  <-> s * [1.0392687] goth10
-%}{}
-%\DeclareFontShape{JY1}{gt}{bx}{n}{%
-%  <-> s * [1.0392687] goth10
-%}{}
-%\fi
-%
-%% JY1 it
-%\DeclareFontShape{JY1}{mc}{m}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JY1}{mc}{bx}{it}{<->ssub*gt/m/n}{}
-%\DeclareFontShape{JY1}{gt}{m}{it}{<->ssub*gt/m/n}{}
-%\DeclareFontShape{JY1}{gt}{bx}{it}{<->ssub*gt/m/n}{}
-%%
-%\DeclareFontShape{JY1}{mc}{b}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JY1}{mc}{eb}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JY1}{gt}{b}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JY1}{gt}{eb}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JY1}{gt}{ub}{it}{<->ssub*mc/m/n}{}
-%% JT1 it
-%\DeclareFontShape{JT1}{mc}{m}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{mc}{bx}{it}{<->ssub*gt/m/n}{}
-%\DeclareFontShape{JT1}{gt}{m}{it}{<->ssub*gt/m/n}{}
-%\DeclareFontShape{JT1}{gt}{bx}{it}{<->ssub*gt/m/n}{}
-%%
-%\DeclareFontShape{JT1}{mc}{b}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{mc}{eb}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{gt}{b}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{gt}{eb}{it}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{gt}{ub}{it}{<->ssub*mc/m/n}{}
-%% sc
-%\DeclareFontShape{JY1}{mc}{m}{sc}{<->ssub*mc/m/n}{}
-%\DeclareFontShape{JT1}{mc}{m}{sc}{<->ssub*mc/m/n}{}
-
 %% from /usr/local/teTeX/share/texmf/tex/latex/base/ot1cmr.fd
 \DeclareFontShape{OT1}{cmr}{m}{n}%
      {%
@@ -380,6 +288,7 @@
 \newcommand{\huge}{\@setfontsize\huge\@xxpt{28}}
 \newcommand{\Huge}{\@setfontsize\Huge\@xxvpt{33}}
 
+%% 版面の設定
 \headheight\z@
 \headsep\z@
 \topskip1\Cht
@@ -403,11 +312,7 @@
 \@settopoint\textheight
 \topmargin\z@
 \@settopoint\topmargin
-\if@twocolumn
- \setlength\marginparsep{10\p@}
-\else
- \setlength\marginparsep{10\p@}
-\fi
+\setlength\marginparsep{10\p@}
 \setlength\marginparpush{5\p@}
 
 \iftombow
@@ -1162,21 +1067,12 @@
  \fi
 }
 
-\if@twocolumn
- \setlength\leftmargini {2zw}% 2em
-\else
- \setlength\leftmargini {2zw}% 2.5em
-\fi
+\setlength\leftmargini {2zw}% 2em
 \setlength\leftmarginii  {2zw}% 2.2em
 \setlength\leftmarginiii {2zw}% 1.87em
 \setlength\leftmarginiv  {2zw}% 1.7em
-\if@twocolumn
- \setlength\leftmarginv {1zw}% .5em
- \setlength\leftmarginvi{1zw}% .5em
-\else
- \setlength\leftmarginv {1zw}% 1em
- \setlength\leftmarginvi{1zw}% 1em
-\fi
+\setlength\leftmarginv {1zw}% .5em
+\setlength\leftmarginvi{1zw}% .5em
 \setlength  \labelsep  {.5zw}% .5em
 \setlength  \labelwidth{\leftmargini}
 \addtolength\labelwidth{-\labelsep}
@@ -1688,87 +1584,6 @@
   \def\@endtheorem{\end{description}}
 %\def\@thmcountersep{.}
 \fi
-
-%%% </borrowed from dotseqn.sty by Donald Arseneau>
-%%\ProvidesPackage{dotseqn}
-%%  [1995/03/22  v1.1 \space Dots leading to equation numbers]
-\newcommand\EqnDots{\leaders\hbox{%
- $\m@th \mkern1.5mu\cdot\mkern1.5mu$}\hfill}
-\@ifundefined{mathindent}{\newdimen\mathindent \mathindent\leftmargini}{}
-\renewcommand{\[}{\relax \ifmmode\@badmath \else
- \begin{trivlist}%
-  \@beginparpenalty\predisplaypenalty \@endparpenalty\postdisplaypenalty
-  \item[]\leavevmode \hbox to\linewidth\bgroup $\m@th\displaystyle %$
-  \hskip\mathindent\bgroup
- \fi}
-\renewcommand{\]}{\relax\ifmmode \egroup $\hfil% $
-    \egroup \end{trivlist}%
-  \else \@badmath \fi}
-\renewenvironment{equation}%
- {\@beginparpenalty\predisplaypenalty \@endparpenalty\postdisplaypenalty
-     \refstepcounter{equation}\trivlist \item[]\leavevmode
-       \hbox to\linewidth\bgroup $\m@th% $
-         \displaystyle \hskip\mathindent}%
- {$\EqnDots % $   Replace `\hfil' with dotted leaders `\EqnDots'.
-     \displaywidth\linewidth\hbox{\@eqnnum}\egroup \endtrivlist}
-\renewenvironment{eqnarray}{%
-   \stepcounter{equation}%
-   \def\@currentlabel{\p@equation\theequation}%
-   \global\@eqnswtrue \m@th \global\@eqcnt\z@  \tabskip\mathindent
-   \let\\\@eqncr \setlength\abovedisplayskip\topsep
-   \ifvmode \addtolength\abovedisplayskip\partopsep \fi
-   \addtolength\abovedisplayskip\parskip
-   \setlength\belowdisplayskip\abovedisplayskip
-   \setlength\belowdisplayshortskip\abovedisplayskip
-   \setlength\abovedisplayshortskip\abovedisplayskip
-   $$\everycr{}\halign to\linewidth% $$
-   \bgroup
-     \hskip\@centering
-     $\displaystyle\tabskip\z@skip{##}$\@eqnsel&%
-     \global\@eqcnt\@ne \hfil${\DEQ@acs##\DEQ@acs}$\hfil&%
-     \global\@eqcnt\tw@ $\displaystyle{##}$\hskip\@centering\cr%
- }% end of "\begin" part
- {\@@eqncr
-   \noalign{% vertical skip up to overlay phantom line
-      \penalty\@M \vskip-\prevdepth
-      \edef\@tempa{\omit\span\omit\span\omit   % span three columns
-        \vrule\@depth\the\prevdepth \@width\z@ % strut of proper depth
-        \kern-\mathindent \kern\linewidth}%    % full line width
-      \nointerlineskip \expandafter % use saved |\@tempa| outside group
-   }\@tempa\cr
-   \egroup
-   \global\advance\c@equation\m@ne$$% $$
-   \global\@ignoretrue
- }
-
-%% from latex.ltx
-%\def\@@eqncr{\let\reserved@a\relax
-%    \ifcase\@eqcnt \def\reserved@a{& & &}\or \def\reserved@a{& &}%
-%     \or \def\reserved@a{&}\else
-%       \let\reserved@a\@empty
-%       \@latex@error{Too many columns in eqnarray environment}\@ehc\fi
-%     \reserved@a \if@eqnsw\@eqnnum\stepcounter{equation}\fi
-%     \global\@eqnswtrue\global\@eqcnt\z@\cr}
-%%
-
-\def\@@eqncr{\let\reserved@a\@empty
-   \ifcase\@eqcnt \def\reserved@a{& &}\or \def\reserved@a{&}\fi
-   \reserved@a
-   \if@eqnsw \egroup $\EqnDots \@eqnnum $\bgroup \stepcounter{equation}%
-   \fi \global\@eqnswtrue\global\@eqcnt\z@\cr}
-\def\DEQ@acs{\hskip\tw@\arraycolsep}
-\DeclareOption{leftjust}{\let\@eqnsel\hfil}
-\DeclareOption{nocolsep}{\let\DEQ@acs\null}
-\ExecuteOptions{nocolsep}% {leftjust}% 
-\newif\if@ieejbibstyle
-\@ieejbibstyletrue
-\DeclareOption{latexbibstyle}{\@ieejbibstylefalse}
-\newif\if@pagenumber
-\@pagenumbertrue
-\DeclareOption{nopagenumber}{\@pagenumberfalse}
-\ProcessOptions
-%% </borrowed from dotseqn.sty>
-
 \def\FRAC#1#2{\leavevmode\kern-.1em
   \raise.5ex\hbox{\the\scriptfont0 #1}\kern-.1em
   /\kern-.15em\lower.25ex\hbox{\the\scriptfont0 #2}}
@@ -1950,31 +1765,6 @@
  \interdisplaylinepenalty\z@
  \predisplaypenalty\z@
  \postdisplaypenalty\z@
- %%
- \@ifundefined{@mathmargin}{\let\@mathmargin\undefined}
-  {%
-   \@mathmargin\mathindent
-   \multlinegap1zw
-   %% from /usr/local/teTeX/share/texmf/tex/latex/amsmath/amsmath.sty, v2.13
-   \def\maketag@@@#1{\hbox{\m@th\normalfont #1}\hskip1zw}%
-   \renewcommand{\eqref}[1]{\textup{\tagform@{\ref{#1}}\unskip}}
-   \def\make@display@tag{%
-     \if@eqnsw
-      \incr@eqnum
-      %\print@eqnum
-      \EqnDots\tagform@\theequation
-     \else \iftag@ \df@tag \global\let\df@tag\@empty \fi
-     \fi
-     \ifmeasuring@
-     \else
-       \ifx\df@label\@empty
-       \else
-	 \@xp\ltx@label\@xp{\df@label}%
-	 \global\let\df@label\@empty
-       \fi
-     \fi
-   }
-  }%
  %% nidanfloat
  \@ifundefined{dblbotfraction}{}{%
   \renewcommand\dblbotfraction{0.9}% 0.5
@@ -2005,17 +1795,9 @@
 \pagenumbering{arabic}
 %\raggedbottom
 \flushbottom
-\if@twocolumn
-  \twocolumn
-  \sloppy
-\else
-  \onecolumn
-\fi
-\if@twoside
-  \@mparswitchtrue
-\else
-  \@mparswitchfalse
-\fi
+\twocolumn
+\sloppy
+\@mparswitchfalse
 %
 %%%% 文書にハードコーディングされていたのを移設
 \hoffset=-1.0in% 左へ 1.0インチ版面全体を移動
