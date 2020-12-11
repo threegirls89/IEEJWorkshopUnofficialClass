@@ -17,6 +17,9 @@
 %[2014/09/07 v2.0, modified by C.Muto by using Okumura's `jsarticle.cls']
 %  [2005/11/07 v1.0 for ieej-tec]
 
+% 84mmに26文字入れるので，1文字あたり9.1924ptの幅
+\kanjiskip=0.1924pt plus 0.4pt minus 0.5pt
+
 \newif\if@NTT
 \@ifundefined{kanjiskip}{\@NTTtrue
  \let\kanjiskip=\jintercharskip
@@ -49,7 +52,7 @@
 \@ieejbibstyletrue
 \DeclareOption{latexbibstyle}{\@ieejbibstylefalse}
 \newif\if@pagenumber
-\@pagenumbertrue
+\@pagenumberfalse
 \DeclareOption{nopagenumber}{\@pagenumberfalse}
 %
 %
@@ -71,6 +74,7 @@
 \setlength\paperheight {297mm}%
 \setlength\paperwidth  {210mm}%
 \renewcommand{\@ptsize}{0}
+\tombowfalse
 \DeclareOption{tombow}{%
   \tombowtrue \tombowdatetrue
   \setlength{\@tombowwidth}{.1\p@}%
@@ -105,7 +109,7 @@
 \def\jsc@JYn{\if@jsc@uplatex JY2\else JY1\fi}
 \def\jsc@JTn{\if@jsc@uplatex JT2\else JT1\fi}
 \def\jsc@pfx@{\if@jsc@uplatex u\else \fi}
-\ExecuteOptions{fleqn,final,mentuke}
+\ExecuteOptions{fleqn,final}
 \ProcessOptions\relax
 %% フォント周りの設定
 \if@jsc@uplatex
@@ -213,9 +217,9 @@
 
  \newcommand{\small}{%
   \@setfontsize\small\@ixpt{15.5\@Q}%
-  \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+  \abovedisplayskip \z@ \@plus3\p@ \@minus4\p@
   \abovedisplayshortskip \z@ \@plus2\p@
-  \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+  \belowdisplayshortskip \z@ \@plus2\p@ \@minus2\p@
   \def\@listi{\leftmargin\leftmargini
 	      \topsep 4\p@ \@plus2\p@ \@minus2\p@
 	      \parsep 2\p@ \@plus\p@ \@minus\p@
@@ -241,8 +245,8 @@
 	       \itemsep \parsep}%
    \belowdisplayskip \abovedisplayskip}
 \else
- \renewcommand{\normalsize}{%
-  \@setfontsize\normalsize\@xpt{18.7\@Q}%
+ \renewcommand{\normalsize}{% for title english
+  \@setfontsize\normalsize\@xpt{14}%
   \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
   \abovedisplayshortskip \z@ \@plus3\p@
   \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
@@ -250,14 +254,14 @@
   \let\@listi\@listI}
 
  \newcommand{\small}{%
-  \@setfontsize\small\@ixpt{18.7\@Q}%
-  \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+  \@setfontsize\small\@ixpt{14}%
+  \abovedisplayskip 3\p@ \@plus3\p@ \@minus3\p@
   \abovedisplayshortskip \z@ \@plus2\p@
-  \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+  \belowdisplayshortskip 3\p@ \@plus3\p@ \@minus3\p@
   \def\@listi{\leftmargin\leftmargini
 	      \topsep 4\p@ \@plus2\p@ \@minus2\p@
 	      \parsep 2\p@ \@plus\p@ \@minus\p@
-	      \itemsep \parsep}%
+	      \itemsep \parsep}%s
   \belowdisplayskip \abovedisplayskip}
 
  \small
@@ -282,9 +286,9 @@
 
 \newcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
 \newcommand{\tiny}{\@setfontsize\tiny\@vpt\@vipt}
-\newcommand{\large}{\@setfontsize\large\@xiipt{17}}
-\newcommand{\Large}{\@setfontsize\Large\@xivpt{36\@Q}}
-\newcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{25}}
+\newcommand{\large}{\@setfontsize\large\@xiipt{17}}% jauthorentry
+\newcommand{\Large}{\@setfontsize\Large\@xivpt{28}}% jtitle
+\newcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{25}}% not using
 \newcommand{\huge}{\@setfontsize\huge\@xxpt{28}}
 \newcommand{\Huge}{\@setfontsize\Huge\@xxvpt{33}}
 
@@ -299,19 +303,10 @@
 \@tempdima52zw
 \textwidth\@tempdima
 \advance \textwidth 10mm
+\textwidth178mm
 \@settopoint\textwidth
-\if@english
- \textheight 59\Cvs
- \advance \textheight \topskip
- %\advance \textheight 0mm
-\else
- \textheight 49\Cvs
- \advance \textheight \topskip
- \advance \textheight .3mm % limit .3mm
-\fi
-\@settopoint\textheight
-\topmargin\z@
-\@settopoint\topmargin
+\textheight 232mm
+\topmargin 40mm
 \setlength\marginparsep{10\p@}
 \setlength\marginparpush{5\p@}
 
@@ -333,12 +328,12 @@
  \evensidemargin\oddsidemargin
  \@settopoint\evensidemargin
 \else
- \topmargin \z@
- \@settopoint\topmargin
- \oddsidemargin\z@
- \@settopoint\oddsidemargin
+ \advance \topmargin -1in
+ \@tempdima \paperwidth
+ \advance \@tempdima -\textwidth
+ \oddsidemargin 0.5\@tempdima
+ \advance \oddsidemargin -1in
  \evensidemargin\z@
- \@settopoint\evensidemargin
 \fi
 
 \marginparwidth 10mm
@@ -457,21 +452,15 @@
 \def\Paper@No{}
 \def\@Paper@No{\smash{\raise28mm\vtop{\raggedleft\footnotesize\Paper@No}}}
 
-\def\jtitle#1{\gdef\@jtitle{#1}}
+\long\def\jtitle#1{\long\gdef\@jtitle{#1}}
 \def\@jtitle{}
 
-\def\jsubtitle#1{\gdef\@jsubtitle{#1}}
-\def\@jsubtitle{}
 
-\def\etitle#1{\gdef\@etitle{#1}}
+\long\def\etitle#1{\long\gdef\@etitle{#1}}
 \def\@etitle{}
-
-\def\esubtitle#1{\gdef\@esubtitle{#1}}
-\def\@esubtitle{}
 
 \if@english
  \let\title\jtitle
- \let\subtitle\jsubtitle
 \fi
 
 \newtoks\@authorlist
@@ -771,7 +760,7 @@
 \fi
 
 \newdimen\belowtitlesep
-\belowtitlesep\z@
+\belowtitlesep\Cvs
 
 \def\maketitle{\par
  \ifnum \chk@alcnt < \@alcnt
@@ -785,9 +774,7 @@
   \global\let\@maketitle\relax
   \global\let\@makeenglishtitle\relax
   \global\let\@jtitle\relax
-  \global\let\@jsubtitle\relax
   \global\let\@etitle\relax
-  \global\let\@esubtitle\relax
   \global\let\@authorlist\relax
   \global\let\affiliate\relax
   \global\let\@outputJauthorlist\relax
@@ -805,12 +792,6 @@
    \centering
    \@jtitle\par
   }%
-  \ifx\@jsubtitle\empty\else
-   \vskip.5\Cvs
-   {\large\centering
-    \@jsubtitle\par
-   }%
-  \fi
   \vskip\Cvs
   \if@english
    \vskip.5\Cvs
@@ -823,11 +804,6 @@
    {\normalsize\normalfont
     \centering \@etitle\par
    }%
-   \ifx\@esubtitle\empty\else
-    \vskip.5\Cvs
-    {\small\normalfont
-     \centering \@esubtitle}\par
-   \fi
   \fi
   {\small\normalfont
    \centering
@@ -854,6 +830,7 @@
 
  }%
   %%
+\if0
   \@tempdima \ht\@tempboxa
   \advance \@tempdima \dp\@tempboxa
   \@tempdimb \@tempdima
@@ -876,6 +853,8 @@
     \leavevmode\box\@tempboxa
    \vss}%
   }\par
+\fi
+  \box\@tempboxa
   \vspace{\belowtitlesep}%
 }
 
@@ -919,21 +898,6 @@
    \everypar{}%
   \fi}%
 }
-
-%% \@startsection{NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
-%\def\@startsection#1#2#3#4#5#6{\if@noskipsec \leavevmode \fi
-% \par \@tempskipa #4\relax
-% \@afterindenttrue
-% \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
-% \if@nobreak
-%  \everypar{}%
-% \else
-%  \addpenalty\@secpenalty
-%  \vskip-\prevdepth \prevdepth\z@ \vskip\Cvs
-%  \advance\@tempskipa-\Cvs
-%  \vspace*{\@tempskipa}
-% \fi
-% \@ifstar{\@ssect{#3}{#4}{#5}{#6}}{\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
 
 \def\sectionnum@font{\sffamily}
 \def\subsectionnum@font{\sffamily}
@@ -1632,13 +1596,7 @@
     \fi
   \fi}}
 
-%%\newcommand{\prepartname}{第}
-%%\newcommand{\postpartname}{部}
-%%\newcommand{\contentsname}{目 次}
-%%\newcommand{\listfigurename}{図 目 次}
-%%\newcommand{\listtablename}{表 目 次}
 \newcommand{\refname}{参考文献}
-%%\newcommand{\indexname}{索 引}
 \if@nojcaption
 \newcommand{\figurename}{Fig.\,}
 \newcommand{\tablename}{Table~}
@@ -1647,7 +1605,6 @@
 \newcommand{\tablename}{表}
 \fi
 %%\newcommand{\appendixname}{付 録}
-%%\newcommand{\abstractname}{概 要}
 
 %% from "citesort.sty", with a little customized
 \newcount\@minsofar
@@ -1798,9 +1755,5 @@
 \twocolumn
 \sloppy
 \@mparswitchfalse
-%
-%%%% 文書にハードコーディングされていたのを移設
-\hoffset=-1.0in% 左へ 1.0インチ版面全体を移動
-\voffset=-1.0in% 上へ 1.0インチ版面全体を移動
 %
 \endinput
