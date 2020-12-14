@@ -1,14 +1,14 @@
 \documentclass[english,fleqn]{ieej-tec2}% documentclassの宣言で処理エンジンを指定する。fleqnは数式左寄せのため
 \usepackage{amsmath,amssymb,bm}% ams-LaTeXの色々を使う
+\usepackage{txfonts}
 \usepackage[dvipdfmx]{graphicx,color}% 
 \usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
 %
 % 論文番号（1頁目右上にあるやつ）
-% 論文番号（1頁目右上にあるやつ）
-\論文番号{xx-xx-xx \par yy-yy-yy}
+\articlenumber{xx-xx-xx \par yy-yy-yy}
 %
 % 英語タイトル
-\title{A study on the style file for IEEJ workshop.}
+\title{An English template for IEEJ workshop \par second row of the English title}
 % 
 % 著者リスト
 \authorlist{%
@@ -25,47 +25,49 @@
  {Nihon Electric Power Company}
 %
 % authormetryの番号により改行
-%\breakaffiliate{1}
-%\breakaffiliate{2}
+\breakaffiliate{1}
+\breakaffiliate{2}
 %
 %英文キーワード。
 \begin{keyword}
-Keywords, keyword2, keyword3, keyword4, keyword5, keyword6, keyword7, keyword8, keyword9, keyword10, keyword11
+Keywords, keyword2, keyword3, keyword4, keyword5, keyword6
 \end{keyword}
 
 \begin{document}
-\maketitle
-%
 % abstractは\begin{document}と\maketitleの間に書く
 \begin{abstract}
-The sentences.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id consectetur leo. Nullam tempor felis a erat tincidunt mollis. Cras elementum est ac diam pretium, finibus tincidunt enim lacinia. Pellentesque dictum quam non feugiat varius. Maecenas a elit ultrices, fringilla diam ut, maximus turpis. Nullam sed hendrerit felis. Aliquam tristique, diam sit amet cursus lacinia, leo ligula consectetur quam, ac suscipit orci tellus et mi. Integer blandit feugiat libero, quis feugiat tortor tempor in. Ut elementum quam sed arcu rhoncus vulputate. Quisque euismod libero id diam mollis sagittis. Aliquam erat volutpat. Donec porttitor, lectus sed molestie porttitor, nunc eros vestibulum enim, eu dictum massa ante id est.
 \end{abstract}
+%
+\maketitle
 %%%%%%%%%%%%%%%% ここから本文 %%%%%%%%%%%%%%%%
 %
 \section{Section}
-Sentences
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis tempor diam. Vivamus lacinia sapien nec purus vestibulum, et lacinia leo iaculis. Suspendisse potenti. Ut imperdiet et turpis quis vestibulum. Aliquam congue lectus laoreet magna lobortis consectetur. Sed consectetur arcu nec hendrerit vehicula. Vestibulum faucibus purus justo, vel iaculis nibh malesuada gravida. Vivamus elementum luctus viverra.
 
 \section{Section}
-Sentences
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi posuere enim pulvinar augue mattis mollis. Cras vulputate urna ut consequat luctus.
 
 \subsection{Subsection}
-Sentences\dots reference\cite{IEEJformat} reference\cite{bib2,bib3} reference\cite{bib4,bib5,bib6,bib7}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Reference\cite{IEEJformat} quisque vel lacinia quam. Praesent vehicula\cite{bib2,bib3} aliquet nulla, sit amet euismod urna egestas ut. Sed dui purus, eleifend volutpat feugiat vitae, ullamcorper id elit. Proin auctor\cite{bib4,bib5,bib6,bib7} sit amet leo ut lacinia. Fusce cursus elementum purus, quis suscipit turpis dignissim ac. Etiam imperdiet feugiat est ac scelerisque. Aenean a nisi eu felis commodo bibendum a eu purus. Morbi sodales blandit dictum. Curabitur tincidunt, lectus ac lobortis ullamcorper, orci ipsum accumsan ex, vel mollis libero libero eget libero. Quisque non posuere quam.
+
+Donec dignissim tortor dignissim nunc vestibulum sodales. Curabitur eget vehicula turpis, sed porttitor massa. Cras sit amet pretium enim. Nulla in nisl lorem. Nullam non rhoncus nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet tempus massa, tempus maximus ipsum. Aenean vitae mauris ut orci tincidunt scelerisque ut id ipsum. Phasellus quam velit, venenatis id arcu id, venenatis pretium felis. Morbi posuere tempor dui, nec lacinia sem. Fusce elementum risus iaculis felis vestibulum lacinia et non nunc.
 
 \begin{enumerate}
 \item
-aaaaaaaaaaaaaaaaaaaaaaaaaaaa
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ultrices eros sit amet dapibus hendrerit. Curabitur tincidunt eget enim rhoncus pellentesque.
 \item
-bbbbbbbbbbbbbbbbbbbbbbbbbbbb
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et imperdiet massa. Vestibulum rhoncus libero mauris, ac condimentum leo dignissim eu. Suspendisse egestas scelerisque magna at tristique. Ut et volutpat purus.
 \end{enumerate}
 
 \subsection{Subsection}
-Sentences
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet pretium orci. Vivamus porta dolor nec ex placerat, vitae pulvinar diam tempus. Donec pulvinar porta auctor. Fusce varius, metus vel pretium lobortis, metus nisi rutrum leo, in tempor tellus sem vitae urna. Vestibulum commodo elit ac justo lacinia pharetra.
 %
 \begin{equation}
 Z = X + Y
 \end{equation}
 %
-Sentences(No indent).
+Fusce a nisl ut ipsum pharetra volutpat vehicula at nisl. Donec sollicitudin iaculis placerat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque venenatis tellus eu justo lobortis, in efficitur mi aliquet. Aliquam id dapibus ante, in ultrices lectus. Proin magna odio, sollicitudin nec dignissim et, molestie sed arcu. Quisque at arcu vel nunc tristique convallis eget at orci. Etiam velit erat, consequat sed convallis non, dapibus non sapien. Maecenas mollis magna nulla, non commodo tellus viverra scelerisque.
 %
 \begin{align}
 Z &= X + Y \notag\\
@@ -75,7 +77,7 @@ Z &= X + Y \notag\\
 Z &= X + Y \times \frac AB
 \end{align}
 
-Sentence (refer to \tablename\ref{tab:example}).
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Refer to \tablename\ref{tab:example}, maecenas viverra elementum leo, ac fringilla tellus molestie nec. Fusce volutpat nisl massa, dapibus egestas diam congue in. Nullam bibendum leo massa. Maecenas tempus lectus sed urna ullamcorper lobortis. Sed viverra, elit at consequat imperdiet, nunc nisi ullamcorper purus, in ullamcorper nunc lorem eu sem. Nunc sit amet tempor turpis. Sed rhoncus rutrum leo.
 
 \begin{table}[b]
 \centering
@@ -93,7 +95,7 @@ Explanation of the table.
 \end{minipage}
 \end{table}
 
-Sentence ( refer to \tablename\ref{tab:nidanfloat:example})
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris nec sem orci. In elementum, mi nec vehicula consectetur, nibh massa iaculis risus, eget convallis nulla erat id velit. Ut finibus tempus velit mattis ultrices ( refer to \tablename\ref{tab:nidanfloat:example})
 
 \begin{table*}[t]
 \centering
@@ -112,7 +114,7 @@ Explanation of the table (centering).
 \end{minipage}
 \end{table*}
 
-Sentence (refer to \figurename\ref{fig:example}).
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non condimentum augue. Suspendisse rhoncus quis purus ut tempor. Pellentesque imperdiet urna eget purus ornare iaculis. Nunc efficitur lectus in odio maximus, sed posuere sapien accumsan. Cras tristique lacus et nisi tincidunt, id aliquet libero vulputate (refer to \figurename\ref{fig:example}).
 
 %% 貼るためのeps画像をtexから作成 %%
 \bgroup
@@ -146,30 +148,26 @@ Sentence (refer to \figurename\ref{fig:example}).
 \label{fig:example}
 \end{figure}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque varius magna turpis, in molestie eros accumsan vel. Donec finibus felis lacus, ut mattis sem blandit vitae. Curabitur risus nisi, rhoncus sed arcu tempor, eleifend feugiat enim. Nullam eu ultrices libero. Maecenas at mi quis lorem euismod dapibus. In hac habitasse platea dictumst. Integer ac blandit felis. Fusce molestie ipsum eu tortor consequat, ut condimentum tortor egestas. Quisque mattis condimentum elit, nec interdum lacus interdum ut. Mauris porttitor quam non lectus commodo consectetur.
 
-Sentence.
+Duis nunc lacus, vehicula non feugiat a, lobortis non ipsum. Donec facilisis at velit at pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. In dictum nisl id blandit laoreet. Nunc interdum interdum lectus, vitae imperdiet arcu malesuada sed. Nulla sollicitudin erat a accumsan facilisis. Proin porta pellentesque erat, mollis pharetra purus mollis vel. Cras non mollis sem. In quis aliquet dolor. Fusce non faucibus metus, nec imperdiet urna. Maecenas molestie ante quis ex rutrum, ut fermentum tellus condimentum. Donec eu efficitur urna. Vivamus tempus vel velit varius ornare.
 
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
-qwertyuiop
-asdfghjkl
-zxcvbnm
+Etiam in enim auctor, aliquet odio et, sollicitudin ex. Vivamus vitae arcu lorem. Fusce tempor blandit leo, et vestibulum elit pellentesque id. Nam in est dignissim diam pulvinar eleifend at sed turpis. Nunc varius imperdiet odio sit amet elementum. Aenean dapibus aliquet velit a viverra. Curabitur ut nisi eros. Fusce vel magna augue. Cras laoreet volutpat cursus.
+
+Donec non aliquam diam. Duis vitae purus fermentum, commodo tortor vitae, lacinia orci. In hac habitasse platea dictumst. Vivamus nunc ipsum, aliquam sed ante a, cursus gravida nulla. Nunc venenatis pellentesque magna, sed consectetur quam imperdiet ac. Mauris sodales nisi at orci porttitor lacinia. Nullam ornare nulla a tempor dapibus.
+
+Maecenas mattis viverra urna, id auctor leo finibus eu. Nunc euismod vulputate dolor a vestibulum. Proin lorem lorem, tempor et diam ac, volutpat dignissim justo. Nulla molestie auctor placerat. Vivamus consectetur ante quis elementum semper. Cras eget quam lacus. Proin auctor sodales nulla non suscipit. Quisque ac risus tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus faucibus eros vestibulum erat blandit convallis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque quis dictum diam. Vivamus faucibus volutpat lacus, vel placerat purus faucibus in.
+
+Vestibulum mattis dignissim feugiat. Duis ut dui in orci placerat molestie et ac nulla. Integer rhoncus molestie condimentum. Aliquam molestie ante a elit gravida ultrices. Aliquam bibendum orci non arcu maximus imperdiet. Pellentesque fringilla odio in ex commodo dictum. Integer mattis posuere est nec feugiat. Nullam efficitur, odio eu pharetra cursus, eros erat lobortis quam, rutrum ornare eros enim non nibh. Phasellus mattis, purus rhoncus finibus interdum, erat mauris commodo odio, nec rhoncus lectus dolor at purus. Sed eget finibus sapien. Cras tempor eget purus nec tristique. Etiam condimentum luctus orci. Aliquam scelerisque consequat odio in molestie. Ut accumsan felis at lorem porttitor fermentum. Quisque eu congue neque, in consectetur est. Nam vestibulum gravida efficitur.
+
+Ut accumsan posuere erat, quis feugiat lectus dictum nec. Pellentesque sagittis enim diam. Aliquam erat volutpat. Nunc lacus velit, feugiat sit amet tortor nec, suscipit dignissim metus. Integer congue id mi at fringilla. Fusce pretium commodo erat vel dictum. Aenean odio nulla, elementum quis sagittis eu, volutpat vitae metus. Nulla et elit blandit, faucibus augue at, vehicula orci. Suspendisse luctus, mi viverra ornare iaculis, est ligula feugiat erat, ut pellentesque velit orci eget magna. Donec nulla nulla, molestie non ipsum a, fringilla gravida quam. Proin pellentesque rhoncus diam, at eleifend orci rhoncus sed. Pellentesque gravida vitae orci vitae blandit. Sed quis euismod sem. Duis fringilla ac arcu ut posuere. Vestibulum enim lacus, eleifend ut ultricies sed, iaculis vitae purus.
+
+Curabitur a cursus diam. Pellentesque sed iaculis lectus, nec ullamcorper sapien. Aenean nec lorem tellus. Nulla finibus, augue a dapibus dapibus, justo libero feugiat nibh, eget convallis tortor ante bibendum quam. Morbi imperdiet sem urna, luctus semper nunc porttitor a. Proin efficitur non nunc vel consequat. Aenean metus nibh, rhoncus in elit vitae, vestibulum eleifend ligula. Vestibulum tincidunt lectus ut tellus sagittis iaculis. Aenean sodales tincidunt metus. Donec eu metus pulvinar, malesuada ex in, convallis metus. Duis pulvinar sem pellentesque, porttitor enim ut, porttitor nisl. Nulla posuere cursus fringilla. Proin viverra accumsan vulputate. Curabitur ullamcorper turpis at elit tempor faucibus. Quisque suscipit nunc lorem, ullamcorper cursus velit gravida eu. Curabitur metus leo, feugiat scelerisque egestas non, dignissim vel nisl.
+
+Nam malesuada pellentesque mauris, nec suscipit ligula fermentum id. Nulla pharetra sapien at sapien imperdiet finibus. Sed vitae nisi vel urna congue condimentum. Donec non tortor a metus sagittis convallis ac vitae enim. Curabitur rhoncus mauris lobortis mi imperdiet, nec vestibulum ante luctus. Pellentesque feugiat tellus in lacinia posuere. Nunc sed odio viverra, efficitur turpis a, vulputate sapien. Donec in auctor neque, ac pharetra est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur pharetra magna id quam lobortis convallis. Integer aliquet sagittis turpis, ac iaculis risus iaculis vitae. Fusce sed rutrum lorem. Proin porta sagittis erat sit amet placerat. Morbi convallis nibh vel velit facilisis venenatis.
+
+Suspendisse mollis porta massa, eget ultrices mi congue vitae. Ut ullamcorper laoreet risus. Aenean vitae nibh nec quam cursus accumsan et non dolor. Suspendisse vitae aliquam libero. Proin ut urna mauris. Morbi in enim nec lectus aliquam maximus. Praesent luctus nec ligula non luctus. Sed finibus dui libero, id lobortis tellus accumsan molestie. Sed laoreet purus ante. Phasellus posuere tincidunt erat. Nunc id arcu ut augue pretium imperdiet. Vivamus in nibh lacinia, elementum odio in, tincidunt diam.
+
 \begin{thebibliography}{99}
 \bibitem{IEEJformat}
 \verb|http://www.iee.jp/?page_id=4843|

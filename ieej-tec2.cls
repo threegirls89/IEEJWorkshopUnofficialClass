@@ -109,7 +109,7 @@
 \def\jsc@JYn{\if@jsc@uplatex JY2\else JY1\fi}
 \def\jsc@JTn{\if@jsc@uplatex JT2\else JT1\fi}
 \def\jsc@pfx@{\if@jsc@uplatex u\else \fi}
-\ExecuteOptions{fleqn,final}
+\ExecuteOptions{fleqn,nopagenumber,final}
 \ProcessOptions\relax
 %% フォント周りの設定
 \if@jsc@uplatex
@@ -424,7 +424,7 @@
 
 \def\ps@plain{%
  \let\@mkboth\@gobbletwo
- \def\@oddhead{\@LH\hfil\@RH}%
+ \long\def\@oddhead{\@LH\hfil{\footnotesize\@Paper@No}\@RH}%
  \if@pagenumber%
   \def\@oddfoot{\@LB\hfil
    {\footnotesize\thepage/\pageref{ieej-tec@lastpage}}\@RB}%
@@ -448,7 +448,7 @@
  \let\@evenfoot\@oddfoot
 }
 
-\long\def\論文番号#1{\long\gdef\Paper@No{#1}}
+\long\def\articlenumber#1{\long\gdef\Paper@No{#1}}
 \def\Paper@No{}
 \def\@Paper@No{\smash{\raise28mm\vtop{\raggedleft\footnotesize\Paper@No}}}
 
@@ -460,7 +460,7 @@
 \def\@etitle{}
 
 \if@english
- \let\title\jtitle
+ \let\title\etitle
 \fi
 
 \newtoks\@authorlist
@@ -787,15 +787,22 @@
   \advance \@tempdima -4zw
   \hspace{2zw}%
   \begin{minipage}{\@tempdima}
+  \if@english
   {\Large
-   \if@english\baselineskip30\@Q\fi
+  \centering
+  \@etitle\par
+  }%
+  \vskip\Cvs
+  {\large
+   \centering
+   \@outputEauthorlist\par
+  }%
+  \else
+  {\Large
    \centering
    \@jtitle\par
   }%
   \vskip\Cvs
-  \if@english
-   \vskip.5\Cvs
-  \else
    {\large
     \centering
     \@outputJauthorlist\par
@@ -804,11 +811,11 @@
    {\normalsize\normalfont
     \centering \@etitle\par
    }%
-  \fi
   {\small\normalfont
    \centering
    \@outputEauthorlist\par
   }%
+  \fi%
   \small
   \vskip\Cvs
   \bgroup
@@ -868,18 +875,13 @@
 
 %\renewcommand{\thepart}{\@Roman\c@part}
 \renewcommand{\thesection}{\@arabic\c@section}
-\if@english
- \renewcommand{\thesubsection}{\thesection.\@arabic\c@subsection}
- \renewcommand{\thesubsubsection}{\thesubsection.\@arabic\c@subsubsection}
-\else
-  \def\thesubsection{\protect\leavevmode
-    \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-    \@arabic\c@subsection\kern0pt\hbox to .5zw{〉\hss}}
-  \def\thesubsubsection{\protect\leavevmode
-    \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-    \@arabic\c@subsection\hbox to .5zw{\hss ・\hss}%
-    \@arabic\c@subsubsection\kern0pt\hbox to .5zw{〉\hss}}
-\fi
+\def\thesubsection{\protect\leavevmode
+  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
+  \@arabic\c@subsection\kern0pt\hbox to .5zw{〉\hss}}
+\def\thesubsubsection{\protect\leavevmode
+  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
+  \@arabic\c@subsection\hbox to .5zw{\hss ・\hss}%
+  \@arabic\c@subsubsection\kern0pt\hbox to .5zw{〉\hss}}
 \renewcommand{\theparagraph}{\@arabic\c@paragraph}
 \renewcommand{\thesubparagraph}{\@arabic\c@subparagraph}
 
@@ -1459,7 +1461,11 @@
  {\raggedbottom
   \if@ieejbibstyle
     \vskip 2\Cvs plus \z@ minus \Cvs
-    \hbox to \hsize{\hfil\normalsize\bfseries\centering 文\hskip 3zw 献\hfil}
+    \if@english
+    \hbox to \hsize{\hfil\normalsize\bfseries\centering References\hfil}%
+    \else
+      \hbox to \hsize{\hfil\normalsize\bfseries\centering 文\hskip 3zw 献\hfil}%
+    \fi
     \if@jsc@uplatex
     \vskip 8.875\p@
     \hrule height 0.25\p@ depth 0.125\p@
@@ -1472,6 +1478,7 @@
   \else
     \section*{\refname}%
   \fi
+  \nopagebreak
   \footnotesize
    \list{\if@english (\hfil\@arabic\c@enumiv\hfil )\else
      \leavevmode\hbox to .5zw{\hss （}\hfil\@arabic\c@enumiv\hfil
@@ -1598,11 +1605,16 @@
 
 \newcommand{\refname}{参考文献}
 \if@nojcaption
-\newcommand{\figurename}{Fig.\,}
-\newcommand{\tablename}{Table~}
+  \newcommand{\figurename}{Fig.\,}
+  \newcommand{\tablename}{Table~}
 \else
-\newcommand{\figurename}{図}
-\newcommand{\tablename}{表}
+  \if@english
+    \newcommand{\figurename}{Fig.\,}
+    \newcommand{\tablename}{Table~}
+  \else
+  \newcommand{\figurename}{図}
+  \newcommand{\tablename}{表}
+  \fi
 \fi
 %%\newcommand{\appendixname}{付 録}
 
