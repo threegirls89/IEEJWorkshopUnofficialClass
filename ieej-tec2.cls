@@ -12,7 +12,7 @@
 % v2.2 \enumerateのパラメタ変更。TM_paper_stylefile_word.docに似せる
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ieej-tec2}%
-[2020/12/11 v2.3, modified by S.Miyoshi by using Okumura's `jsarticle.cls']
+[2020/12/14 v2.3, modified by S.Miyoshi by using Okumura's `jsarticle.cls']
 %[2016/10/25 v2.1, modified by C.Muto by using Okumura's `jsarticle.cls']
 %[2014/09/07 v2.0, modified by C.Muto by using Okumura's `jsarticle.cls']
 %  [2005/11/07 v1.0 for ieej-tec]
@@ -1728,28 +1728,31 @@
 %\predisplaypenalty\z@       % 1000
 
 \AtBeginDocument{%
- \small
- %%
- \displaywidowpenalty\z@
- \interdisplaylinepenalty\z@
- \predisplaypenalty\z@
- \postdisplaypenalty\z@
- %% nidanfloat
- \@ifundefined{dblbotfraction}{}{%
-  \renewcommand\dblbotfraction{0.9}% 0.5
-  \setcounter{dblbotnumber}{4}% 2
- }%
+  \small
+  %%
+  \displaywidowpenalty\z@
+  \interdisplaylinepenalty\z@
+  \predisplaypenalty\z@
+  \postdisplaypenalty\z@
+  %% nidanfloat
+  \@ifundefined{dblbotfraction}{}{%
+    \renewcommand\dblbotfraction{0.9}% 0.5
+    \setcounter{dblbotnumber}{4}% 2
+  }%
  %% here.sty
- \@ifundefined{@HHfloat}{}{%
-  \def\@HHfloat#1[H]{%
-   \expandafter\let\csname end#1\endcsname\end@Hfloat
-   \vskip\intextsep
-   \vbox\bgroup\def\@captype{#1}\parindent\z@
-   \@floatboxreset %% added
-   \ignorespaces}%
-  \def\end@Hfloat{\egroup\vskip-1zh %% added
-   \vskip \intextsep}%
- }%
+  \@ifundefined{@HHfloat}{}{%
+    \def\@HHfloat#1[H]{%
+      \expandafter\let\csname end#1\endcsname\end@Hfloat
+      \vskip\intextsep
+      \vbox\bgroup\def\@captype{#1}\parindent\z@
+      \@floatboxreset %% added
+      \ignorespaces}%
+      \def\end@Hfloat{\egroup\vskip-1zh %% added
+      \vskip \intextsep}%
+  }%
+  \@tempdima=2zw
+  \advance \@tempdima 9\kanjiskip
+  \setlength{\mathindent}{\@tempdima}
 }
 
 \AtEndDocument{%
