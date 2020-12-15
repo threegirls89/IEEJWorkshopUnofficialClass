@@ -1,16 +1,16 @@
-\documentclass[platex,fleqn]{ieej-tec2}% documentclassの宣言で処理エンジンを指定する。fleqnは数式左寄せのため
+\documentclass[fleqn]{ieej-tec2}% documentclassの宣言で処理エンジンを指定する。fleqnは数式左寄せのため
 \usepackage{amsmath,amssymb,bm}% ams-LaTeXの色々を使う
 \usepackage[dvipdfmx]{graphicx,color}% 
 \usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
 %
 % 論文番号（1頁目右上にあるやつ）
-\論文番号{TEX-18-001}
+\articlenumber{TEX-21-001}
 %
 % 日本語タイトル
 \jtitle{電気学会研究会\LaTeX{}スタイルファイルの使用方法}
 %
 % 英語タイトル
-\etitle{User's Guide of unofficial \LaTeX{} class file for IEEJ workshop.}
+\etitle{User's Guide of unofficial \LaTeX{} class file for IEEJ technical meeting\footnotemark[1].}
 % 
 % 著者リスト
 \authorlist{%
@@ -29,7 +29,7 @@
 %
 %英文キーワード。
 \begin{ekeyword}
-\LaTeX{}, class file, IEEJ workshop
+\LaTeX{}, class file, IEEJ technical meeting
 \end{ekeyword}
 %
 % 参照いろいろ（ieej-tec2の内容から外れると思うので直接書き。要望あればieej-tec2.clsに移します）
@@ -46,10 +46,10 @@
 %
 % abstractは\begin{document}と\maketitleの間に書く
 \begin{abstract}
-The class file \texttt{ieej-tec2.cls} has been developed for typesetting articles of IEEJ workshop.
-The official class file for the workshop used to exist, however it is no longer available.
+The class file \texttt{ieej-tec2.cls} has been developed for typesetting articles of IEEJ technical meeting.
+The official class file for the meeting used to exist, however it is no longer available.
 Now it becomes a very big problem for \TeX nicians.
-I inherited the class file for the workshop from my boss, 
+I inherited the class file for the technical meeting from my boss, 
 and editted some codes in order to achieve higher fidelity to the official MS word template.
 Happy \TeX ing!!
 \end{abstract}
@@ -57,6 +57,8 @@ Happy \TeX ing!!
 %
 %%%%%%%%%%%%%%%% ここから本文 %%%%%%%%%%%%%%%%
 %
+\footnotetext[1]{（2020/12/15 変更）研究会の英訳はworkshopではなくtechnical meetingらしい……}
+
 \section{はじめに}
 \LaTeX{}とは高品位で美しい組版を様々なプラットフォームで再現性高く実現する組版ソフトウェアであり，多くの研究者に愛用されている。
 
@@ -66,7 +68,7 @@ Happy \TeX ing!!
 電気学会全国大会や部門大会が研究の成果を誇示する場であるのとは対照的に，何かを行ったことに対し議論を交わす場とみなされる。
 電気，電子系を専門分野とする研究者，学生であれば，電気学会研究会に論文を投稿する機会が複数回あるだろう。
 
-電気学会研究会原稿の書き方のwebページ\cite{IEEJformat}を閲覧すると，pdfファイルによる書き方の見本とdocファイルによるテンプレートが利用可能である。
+電気学会研究会原稿の書き方のwebページ\cite{IEEJformat,IEEJformat2021}を閲覧すると，pdfファイルによる書き方の見本とdocファイルによるテンプレートが利用可能である。
 一方で，\LaTeX{}によるテンプレートは，かつては存在したと伝聞しているが，2018年現在では公式のものは存在しない。
 
 筆者は，かつて公開されていた電気学会研究会\LaTeX クラスファイルを基に某氏により作成されたクラスファイルを指導教員より譲り受けた。
@@ -79,16 +81,22 @@ Happy \TeX ing!!
 \section{使用方法}
 本クラスファイルの使用方法を説明する。
 
+\textbf{注意：} 2021年1月以降の研究会から論文のフォーマットが若干変更になった\cite{IEEJformat2021}ため，アップデートを行った。
+Githubにおいて，commit 78e0241 (2020/12/14)以降がこれに対応する。
+最新の研究会論文に最新のクラスファイルを利用する文には問題ないが，古い研究会論文を組版し直す場合などに注意が必要である。
+
 \subsection{準備}
 筆者のgithubをclone or downloadすると得られるファイルは次の通りである。
 \begin{enumerate}
     \item \texttt{ieej-tec2.cls}
     \item \texttt{ieejtec2example.tex}
     \item \texttt{ieejtec2example.pdf}
+    \item \texttt{ieejtec2example\_en.tex}
+    \item \texttt{ieejtec2example\_en.pdf}
     \item \texttt{ieejtec2usersguide.tex}
     \item \texttt{ieejtec2usersguide.pdf}
 \end{enumerate}
-この内，\texttt{ieej-tec2.cls}がクラスファイル本体であり，\texttt{ieejtec2example.tex}は使用例，\texttt{ieejtec2usersguide.tex}は本稿である。
+この内，\texttt{ieej-tec2.cls}がクラスファイル本体であり，\texttt{ieejtec2example.tex}は使用例，\texttt{ieejtec2example\_en.tex}は英文組版の使用例，\texttt{ieejtec2usersguide.tex}は本稿である。
 
 本クラスファイルを利用するには，\texttt{ieej-tec2.cls}\textbf{をtexmfツリーの適当な場所，或いは執筆原稿と同じディレクトリに置く。}
 
@@ -108,30 +116,33 @@ Happy \TeX ing!!
 \item[nojcaption]
 原稿を和文で書く場合，デフォルトでは図表のキャプションは日英併記であるが，これを英文のみにする場合に指定する。
 
+\textbf{注意：}電気学会研究会の論文の書き方\cite{IEEJformat}では，キャプションは日英併記が指定されている。
+
 \item[fleqn]
 数式を左寄せにする場合に指定する。
 
-\item[platex]
-\textbf{デフォルトで指定されている。}platexで組版する場合に指定する。
+\textbf{注意：}電気学会研究会では数式は左揃えなので\textbf{必ず指定する}。
 
 \item[uplatex]
 uplatexで組版する場合に指定する。
+platexで組版する場合は指定しない。
 
-\item[latexbibstyle]
-参考文献の見出しを\LaTeX のデフォルトにする場合に指定する。指定しない場合は電気学会研究会公式に似せた書式になる。
 \end{description}
 
 \subsection{タイトル周りのコマンド}
-\textbf{\bs 論文番号}から\textbf{\bs ekeyword}まではプリアンブル（\textbf{\bs documentclass}と\textbf{\bs begin\{document\}}の間）に記入する。
+\textbf{\bs articlenumber}から\textbf{\bs ekeyword}まではプリアンブル（\textbf{\bs documentclass}と\textbf{\bs begin\{document\}}の間）に記入する。
 \textbf{\bs maketitle}，\textbf{abstract}環境は本文中（\textbf{\bs begin\{document\}}以下）に記述する。
 
 \begin{description}
-\item[\bs 論文番号]
+\item[\bs articlenumber]
 第1ページ右上の論文番号を入力する。
 \begin{verbatim}
- \論文番号{番号}
+ \articlenumber{番号}
 \end{verbatim}
 の形で書く。
+
+\textbf{注意：}Githubにおいて，commit 78e0241 (2020/12/14)より前は\textbf{\bs 論文番号}というコマンドであった。
+コマンドに互換性がないので注意されたい。
 
 \item[\bs jtitle]
 日本語タイトルを入力する。
@@ -245,8 +256,11 @@ uplatexで組版する場合に指定する。
 
 \begin{thebibliography}{99}
 \bibitem{IEEJformat}
-原稿の書き方$\mid$一般社団法人 電気学会, \\
+原稿の書き方｜一般社団法人 電気学会, \\
 \verb|http://www.iee.jp/?page_id=4843| (2018年7月20日閲覧)
+\bibitem{IEEJformat2021}
+原稿の書き方（2021年1月以降に開催の研究会）｜一般社団法人 電気学会, \\
+\verb|https://www.iee.jp/tech_mtg/howto_2021/| (2020年12月15日閲覧)
 \end{thebibliography}
 
 
