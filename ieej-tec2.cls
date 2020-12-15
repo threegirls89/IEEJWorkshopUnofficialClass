@@ -1765,8 +1765,8 @@
 
 \pagestyle{plain}
 \pagenumbering{arabic}
-%\raggedbottom
-\flushbottom
+\raggedbottom
+%\flushbottom
 \twocolumn
 \sloppy
 \@mparswitchfalse
