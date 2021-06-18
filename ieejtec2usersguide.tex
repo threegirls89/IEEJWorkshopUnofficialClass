@@ -192,7 +192,7 @@ platexで組版する場合は指定しない。
  \breakaffiliate{番号}
 \end{verbatim}
 の形で設定する。
-\textbf{\bs breakaffiliate\{\textit{thenumber}\}}は，\textbf{\bs affiliate}との関連付け番号が\textit{thenumber}までの著者を同じ行に，thenumber+1以降の人を改行して表示する。
+\textbf{\bs breakaffiliate\{\textit{thenumber}\}}は，\textbf{\bs affiliate}との関連付け番号が\textit{thenumber}までの著者を同じ行に，\textit{thenumber}+1以降の人を改行して表示する。
 
 例えば，
 \begin{verbatim}
@@ -253,6 +253,37 @@ platexで組版する場合は指定しない。
 
 \end{description}
 
+\subsection{数式周りのコマンド}
+電気学会では数式と式番号の間に点点を入れなければならない。
+この処理を自動で行う機構としては\texttt{dotseqn.sty}が知られているが，\AmS-\LaTeX に対応していない問題がある。
+つまり，\texttt{dotseqn.sty}を使用しても\AmS-\LaTeX が提供する高品質な数式環境である\texttt{align}環境や\texttt{gather}環境などで式番号の前に点点が入らない。
+\texttt{align}環境中の式番号の前に自動でふさわしい長さの点点を入れるのは実装が難しいため，さしあたり使い勝手は好くないが手動で指定した長さの点点を入れるコマンドを提供する。
+実装は電気学会論文誌のクラスファイル\cite{IEEJjournalformat}を参考にした。
+\begin{description}
+\item[\bs eqndotsfill]
+数式中に指定した長さの点点を入れる。
+\begin{verbatim}
+ \eqndotsfill{単位付きの長さ}
+\end{verbatim}
+の形で書く。
+このコマンドは数式の末尾または数式と\verb|\label|の間に置く。
+
+使用例を示す。
+
+\textbf{コード}
+\begin{verbatim}
+\begin{equation}
+e^{i\pi} + 1 = 0 \eqndotsfill{54mm}
+\end{equation}
+\end{verbatim}
+
+\textbf{出力}
+\begin{equation}
+e^{i\pi} + 1 = 0 \eqndotsfill{54mm}
+\end{equation}
+
+\end{description}
+
 
 \begin{thebibliography}{99}
 \bibitem{IEEJformat}
@@ -261,6 +292,9 @@ platexで組版する場合は指定しない。
 \bibitem{IEEJformat2021}
 原稿の書き方（2021年1月以降に開催の研究会）｜一般社団法人 電気学会, \\
 \verb|https://www.iee.jp/tech_mtg/howto_2021/| (2020年12月15日閲覧)
+\bibitem{IEEJjournalformat}
+電気学会論文誌LaTeXスタイルファイル\texttt{ieej.cls} \\
+\verb|https://www.iee.jp/pub/post/|(2021年6月18日閲覧)からダウンロード可能である。
 \end{thebibliography}
 
 

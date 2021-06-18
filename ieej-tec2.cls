@@ -1771,4 +1771,9 @@
 \sloppy
 \@mparswitchfalse
 %
+%
+% 長さを指定して手動で数式に点点を入れる
+\newcommand\EqnDots{\leaders\hbox{$\m@th\mkern1.5mu\cdot\mkern1.5mu$}\hfill}
+\newcommand{\eqndotsfill}[1]{\rlap{\hbox to #1{\ \EqnDots}}}
+%
 \endinput
