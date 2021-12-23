@@ -1340,52 +1340,27 @@
     \let\\\@stackcr
     \@ishortstack}
 
-\long\def\@makecaption#1#2{%
- \vskip\abovecaptionskip
-  %\belowcaptionskip1mm
-  \def\capnum@font{\normalfont}%
-  \let\cap@font\relax
- \setbox\@tempboxa\hbox{\cap@font
-  \ieej@shortstack[c]{{\capnum@font #1}\hskip1zw #2}}%
- \@tempdima\ht\@tempboxa \advance \@tempdima \dp\@tempboxa
- \ifdim \@tempdima > \baselineskip
-  \hfil\parbox[t]{\wd\@tempboxa}{\centering\baselineskip4mm\cap@font
-   {\capnum@font #1}\hskip1zw #2\strut}%
- \else
-  \ifdim \wd\@tempboxa > \capwidth
-   \hfil\parbox[t]{\capwidth}{\centering\baselineskip4mm\cap@font
-    {\capnum@font #1}\hskip1zw #2\strut}%
-  \else
-   \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
+\long\def\@makecaption#1#2{{%
+\vskip\abovecaptionskip%
+\footnotesize%
+\sbox\@tempboxa{#1\hskip1zw\relax #2}%
+\hfil\vbox{\hsize \capwidth\ifdim \wd\@tempboxa <\capwidth \centering\fi#1{\hskip1zw\relax}#2}\par
+\vskip\belowcaptionskip%
+}}
+\long\def\ecaption#1{\par
+ \begingroup
+  \@parboxrestore
+  \if@minipage
+   \@setminipage
   \fi
- \fi
- %\vskip\belowcaptionskip
-}
-
-\long\def\ecaption#1{%
- \if@english
-  \refstepcounter\@captype 
-  \vskip\abovecaptionskip
- \fi
- \bgroup
-  \footnotesize
-  \setbox\@tempboxa\hbox{%
-   \ieej@shortstack[c]{\csname fnum@e\@captype\endcsname\hskip1em #1}}%
-  \@tempdima\ht\@tempboxa \advance \@tempdima \dp\@tempboxa
-  \ifdim \@tempdima > \baselineskip
-   \hfil\parbox[t]{\wd\@tempboxa}{%
-    \csname fnum@e\@captype\endcsname\hskip1em #1\strut}%
-  \else
-   \ifdim \wd\@tempboxa > \ecapwidth
-    \hfil\parbox[t]{\ecapwidth}{%
-     \csname fnum@e\@captype\endcsname\hskip1em #1\strut}%
-   \else
-    \hbox to\hsize{\hfil \box\@tempboxa\hfil}%
-   \fi
-  \fi
-  \vspace{\belowcaptionskip}\par
- \egroup
-}
+  \if@english\refstepcounter\@captype\fi%
+  \vskip\abovecaptionskip\par%
+  \noindent%
+  \footnotesize%
+  \sbox\@tempboxa{\csname fnum@e\@captype\endcsname\hskip1em\relax #1}%
+  \hfil\vbox{\hsize \capwidth\ifdim \wd\@tempboxa <\capwidth \centering\fi{\csname fnum@e\@captype\endcsname\hskip1em\relax}#1}\par
+  \vskip\belowcaptionskip%
+  \endgroup}
 
 \if@english
  \let\caption\ecaption
