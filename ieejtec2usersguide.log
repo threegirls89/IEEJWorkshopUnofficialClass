@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2021.2.4)  18 JUN 2021 17:59
+This is e-pTeX, Version 3.14159265-p3.8.3-191112-2.6 (utf8.sjis) (TeX Live 2020/W32TeX) (preloaded format=platex 2021.2.4)  23 DEC 2021 16:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -42,7 +42,7 @@ LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 \ecapwidth=\dimen158
 \symmincho=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
-(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 1429.
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 1404.
 \bibindent=\dimen159
 \heisei=\count180
 \@minsofar=\count181
@@ -287,20 +287,20 @@ LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <9> not available
 
 
 LaTeX Font Warning: Font shape `JT1/mc/b/it' undefined
-(Font)              using `JT1/mc/b/n' instead on input line 195.
+(Font)              using `JT1/mc/b/n' instead on input line 196.
 
 
 LaTeX Font Warning: Font shape `JY1/mc/b/it' undefined
-(Font)              using `JY1/mc/b/n' instead on input line 195.
+(Font)              using `JY1/mc/b/n' instead on input line 196.
 
 LaTeX Font Info:    Font shape `JT1/mc/m/it' in size <9> not available
-(Font)              Font shape `JT1/mc/m/n' tried instead on input line 195.
+(Font)              Font shape `JT1/mc/m/n' tried instead on input line 196.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
-(Font)              scaled to size 9.35349pt on input line 195.
+(Font)              scaled to size 9.35349pt on input line 196.
 LaTeX Font Info:    Font shape `JY1/mc/m/it' in size <9> not available
-(Font)              Font shape `JY1/mc/m/n' tried instead on input line 195.
+(Font)              Font shape `JY1/mc/m/n' tried instead on input line 196.
 LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
-(Font)              scaled to size 9.35349pt on input line 195.
+(Font)              scaled to size 9.35349pt on input line 196.
 [2] [3
 
 ] (./ieejtec2usersguide.aux)
@@ -310,15 +310,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
  )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 1429 ({)
+### simple group (level 1) entered at line 1404 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2382 strings out of 481140
- 30187 string characters out of 5920655
- 285052 words of memory out of 5000000
- 18397 multiletter control sequences out of 15000+600000
+ 2380 strings out of 481140
+ 30168 string characters out of 5920655
+ 284917 words of memory out of 5000000
+ 18395 multiletter control sequences out of 15000+600000
  557832 words of font info for 134 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
  30i,11n,31p,365b,2195s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on ieejtec2usersguide.dvi (3 pages, 20324 bytes).
+Output written on ieejtec2usersguide.dvi (3 pages, 20424 bytes).
