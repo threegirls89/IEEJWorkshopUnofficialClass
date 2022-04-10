@@ -6,7 +6,7 @@
 %その他のusepackageは以下に書く。
 %
 % 論文番号（1頁目右上にあるやつ）
-\articlenumber{xx-xx-xxx \par yy-yy-yyy}
+\articlenumber{XXX-XX-XXX \par YYY-YY-YYY}
 %
 % 日本語タイトル
 \jtitle{研究会投稿原稿の題目 \par 研究会投稿原稿の題目2行目}
@@ -15,8 +15,12 @@
 \etitle{Title English}
 % 
 % 著者リスト
+% べた書きとauthorlistが両方存在する場合，authorlistは無視される
+\jauthor{電子　太郎\authorstar\jauthordelim 電子　二郎（日本電機大学）\par 電子　三郎\jauthordelim 電子　四郎（日本電力）}
+\eauthor{Taro Denshi\authorstar, Jiro Denshi (Nihon Denki University)\par Saburo Denshi, Shiro Denshi (Nihon Electric Power Company)}
+%
 \authorlist{%
-  \authorentry{電子　太郎}{Taro Denshi}{1}
+  \authorentry*{電子　太郎}{Taro Denshi}{1}
  \authorentry{電子　二郎}{Jiro Denshi}{1}
  \authorentry{電子　三郎}{Saburo Denshi}{2}
  \authorentry{電子　四郎}{Shiro Denshi}{2}
@@ -73,7 +77,7 @@ The ○○○○○○○○○○○○○○○○○○○○○○○○○�
 
 \section{大見出}
 
-\subsection{小見出}
+\subsection{小見出＿文字}
 小見出＿段落□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 引用文献\cite{IEEJformat}□□引用文献\cite{bib2,bib3}□□引用文献\cite{bib4,bib5,bib6,bib7}□□□□□□□□□。
@@ -92,27 +96,29 @@ The ○○○○○○○○○○○○○○○○○○○○○○○○○�
 小見出＿段落□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
 
+\subsubsection{小小見出＿文字}
+小小見出＿段落□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
+□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
+
 本文□□□□□□□□□□□□□□□□□□□□□□□
 □□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
 
-本文□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□。
 %
 \begin{equation}
-Z = X + Y
+Z = X + Y \eqndotsfill{60mm}
 \end{equation}
 %
 □□本文（字下無）□□□□□□□□□□□□□□□□□□□□□□□□□。
 %
 \begin{align}
 Z &= X + Y \notag\\
-& \qquad Z = X + Y \text{\scriptsize ｛数式行（続）｝} \\
+& \qquad Z = X + Y \text{\scriptsize ｛数式行（続）｝} \eqndotsfill{35mm}\\
 \intertext{式説明□□□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□
 □□□□□□□□□□□□□□□□□□□□□。
 （ここはちゃんと実装していないので準拠でない）%
 }
-Z &= X + Y \times \frac AB
+Z &= X + Y \times \frac AB \eqndotsfill{54mm}
 \end{align}
 
 本文□□□□□□□□□□□□□□□□□□□□□□□
@@ -275,8 +281,6 @@ Text & & & & & & & & & & \\\hline
 本文□□□□□□□□□□□□□□□□□□□□□□□
 □□□□５□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{１}\scalebox{0.5}[1]{５}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{０}□□□□\scalebox{0.5}[1]{２}\scalebox{0.5}[1]{５}□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
-□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
 □□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□
