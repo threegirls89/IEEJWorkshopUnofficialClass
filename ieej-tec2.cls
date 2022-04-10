@@ -448,9 +448,10 @@
  \let\@evenfoot\@oddfoot
 }
 
+% 論文番号 11ptで
 \long\def\articlenumber#1{\long\gdef\Paper@No{#1}}
 \def\Paper@No{}
-\def\@Paper@No{\smash{\raise28mm\vtop{\raggedleft\footnotesize\Paper@No}}}
+\def\@Paper@No{\smash{\raise28mm\vtop{\raggedleft\fontsize{11pt}{15pt}\selectfont\Paper@No}}}
 
 \long\def\jtitle#1{\long\gdef\@jtitle{#1}}
 \def\@jtitle{}
