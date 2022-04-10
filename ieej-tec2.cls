@@ -1444,6 +1444,7 @@
 
 \newenvironment{thebibliography}[1]
  {\raggedbottom
+  \filbreak
   \if@ieejbibstyle
     \vskip 2\Cvs plus \z@ minus \Cvs
     \if@english
@@ -1463,7 +1464,6 @@
   \else
     \section*{\refname}%
   \fi
-  \nopagebreak
   \footnotesize
    \list{\if@english (\hfil\@arabic\c@enumiv\hfil )\else
      \leavevmode\hbox to .5zw{\hss （}\hfil\@arabic\c@enumiv\hfil
@@ -1483,7 +1483,7 @@
    \sfcode`\.\@m}
  {\def\@noitemerr
     {\@latex@warning{Empty `thebibliography' environment}}%
-   \endlist}
+   \endlist\filbreak}
 \let\@openbib@code\@empty
 
 \renewcommand{\footnoterule}{%
