@@ -464,6 +464,18 @@
  \let\title\etitle
 \fi
 
+%
+% 著者名べた書き環境
+\long\def\jauthor#1{\long\gdef\@jauthor{#1}}
+\def\@jauthor{}
+\long\def\eauthor#1{\long\gdef\@eauthor{#1}}
+\def\@eauthor{}
+\if@english
+ \let\author\author
+\fi
+\def\authorstar{\kern\z@$^*$\if@english\kern-.35ex\fi}
+\def\jauthordelim{\hskip2zw}
+
 \newtoks\@authorlist
 \newcount\@authorcnt
 \newcount\@alcnt
@@ -607,7 +619,7 @@
    \expandafter\protected@xdef\csname Combined@Jan\number\@alcnt\endcsname{%
     \csname Combined@Jan\number\@alcnt\endcsname
     \if@tempswa
-     ，
+    \jauthordelim
      \csname @breakJauthorline\number\@tempcnta\endcsname
     \fi
     \ignorespaces\expandafter\@firstoftwo\an@al\unskip
@@ -794,9 +806,9 @@
   \@etitle\par
   }%
   \vskip\Cvs
-  {\large
+  {\large\baselineskip20\p@
    \centering
-   \@outputEauthorlist\par
+   \ifx\@eauthor\empty \@outputEauthorlist \else \@eauthor \fi \par
   }%
   \else
   {\Large
@@ -804,9 +816,9 @@
    \@jtitle\par
   }%
   \vskip\Cvs
-   {\large
+   {\large\baselineskip20\p@
     \centering
-    \@outputJauthorlist\par
+    \ifx\@jauthor\empty \@outputJauthorlist \else \@jauthor \fi \par
    }%
    \vskip\Cvs
    {\normalsize\normalfont
@@ -814,8 +826,8 @@
    }%
   {\small\normalfont
    \centering
-   \@outputEauthorlist\par
-  }%
+   \ifx\@eauthor\empty \@outputEauthorlist \else \@eauthor \fi \par
+   }%
   \fi%
   \small
   \vskip\Cvs
