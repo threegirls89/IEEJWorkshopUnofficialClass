@@ -889,12 +889,9 @@
 %\renewcommand{\thepart}{\@Roman\c@part}
 \renewcommand{\thesection}{\@arabic\c@section}
 \def\thesubsection{\protect\leavevmode
-  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsection\kern0pt\hbox to .5zw{〉\hss}}
+  \hbox to 3zw{\hss 〈\kern\z@\thesection\hss ・\hss\@arabic\c@subsection\kern\z@〉\hss}}
 \def\thesubsubsection{\protect\leavevmode
-  \hbox to .5zw{\hss 〈}\kern0pt\thesection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsection\hbox to .5zw{\hss ・\hss}%
-  \@arabic\c@subsubsection\kern0pt\hbox to .5zw{〉\hss}}
+  \hbox to 4zw{\hss 〈\kern\z@\thesection\hss ・\hss\@arabic\c@subsection\hss ・\hss\@arabic\c@subsubsection\kern\z@〉\hss}}
 \renewcommand{\theparagraph}{\@arabic\c@paragraph}
 \renewcommand{\thesubparagraph}{\@arabic\c@subparagraph}
 
@@ -1647,7 +1644,7 @@
 %% end of citesort.sty
 
 \def\cite@f@t@{%
-  --%
+  $\sim$%
 }
 
 %% from "cite.sty", with a little customized
