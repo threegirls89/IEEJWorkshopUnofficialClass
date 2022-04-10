@@ -4,7 +4,7 @@
 \usepackage{nidanfloat}% 2段ぶち抜きの図を下に入れる，2段ぶち抜きの図と1段以内の図が同頁に共存するために必要
 %
 % 論文番号（1頁目右上にあるやつ）
-\articlenumber{TEX-21-001}
+\articlenumber{TEX-22-001}
 %
 % 日本語タイトル
 \jtitle{電気学会研究会\LaTeX{}スタイルファイルの使用方法}
@@ -13,6 +13,9 @@
 \etitle{User's Guide of unofficial \LaTeX{} class file for IEEJ technical meeting\footnotemark[1].}
 % 
 % 著者リスト
+% べた書きとauthorlistが両方存在する場合，authorlistは無視される
+\jauthor{三好　正太\authorstar（東京大学）}
+\eauthor{Shota Miyoshi\authorstar (The University of Tokyo)}
 \authorlist{%
  \authorentry*{三好　正太}{Shota Miyoshi}{1} %発表者は*をつける \authorentry{日本語名}{英語名}{後述の\affiliateとの関連付け番号}
 }
@@ -47,9 +50,9 @@
 % abstractは\begin{document}と\maketitleの間に書く
 \begin{abstract}
 The class file \texttt{ieej-tec2.cls} has been developed for typesetting articles of IEEJ technical meeting.
-The official class file for the meeting used to exist, however it is no longer available.
-Now it becomes a very big problem for \TeX nicians.
-I inherited the class file for the technical meeting from my boss, 
+The official class file for the meeting used to exist. However it is no longer available.
+It is a very big problem for \TeX nicians.
+I inherited the class file for the technical meeting from my supervisor, 
 and editted some codes in order to achieve higher fidelity to the official MS word template.
 Happy \TeX ing!!
 \end{abstract}
@@ -142,7 +145,7 @@ platexで組版する場合は指定しない。
 の形で書く。
 
 \textbf{注意：}Githubにおいて，commit 78e0241 (2020/12/14)より前は\textbf{\bs 論文番号}というコマンドであった。
-コマンドに互換性がないので注意されたい。
+コマンドに互換性がないので注意してほしい。
 
 \item[\bs jtitle]
 日本語タイトルを入力する。
@@ -157,7 +160,32 @@ platexで組版する場合は指定しない。
  \etitle{英語タイトル}
 \end{verbatim}
 の形で書く。
-   
+
+\item[\bs jauthor, \bs eauthor]
+著者リストをべた書きで入力する。
+\begin{verbatim}
+ \jauthor{日本語著者リスト}
+ \eauthor{英語著者リスト}
+\end{verbatim}
+の形で書く。
+著者の区切り方や発表者を示すアステリスクの付け方は指定されているため，指定に沿うための\textbf{\bs authorstar}，\textbf{\bs jauthordelim}コマンドを用意している。
+\textbf{\bs authorstar}コマンドは発表者の名前の直後に空白を入れずに挿入する。
+著者リストにおける発表者を示すアステリスクを挿入する。
+\textbf{\bs jauthordelim}コマンドは日本語発表者の名前または所属の直後に空白を入れずに挿入する。
+日本語著者リストにおける著者の区切り文字を挿入する。
+実体は全角2文字幅の空白である。
+\textbf{\bs par}は改行である。
+
+書き方の具体例を以下に示す。
+\begin{verbatim}
+\jauthor{何樫\authorstar\jauthordelim 垂逸（某某大学）\par 甘木（某某研究所）}
+\eauthor{Nanigashi\authorstar\jauthordelim
+Taresore (An University)\par
+Amagi (A Laboratory)}
+\end{verbatim}
+
+次項の\textbf{\bs authorlist}を使うより分かりやすい上融通が利くのでこちらを推奨する。
+
 \item[\bs authorlist, \bs authorentry]
 著者リストを入力する。次の形で入力する。
 \begin{verbatim}
@@ -206,6 +234,9 @@ platexで組版する場合は指定しない。
  \breakaffiliate{2}        
 \end{verbatim}
 とすると\textbf{\bs affiliate}の番号が1, 2である何樫と垂逸は同じ行に表示される。
+
+\textbf{注意：}異なる行に同じ所属が存在する場合，または同じ行に複数の所属が存在する場合に正しく表示されないことがある。
+このような場合には\textbf{\bs jauthor, \bs eauthor}を使用する。
 
 \item[\bs jkeyword]
 日本語キーワードを入力する。
@@ -284,7 +315,6 @@ e^{i\pi} + 1 = 0 \eqndotsfill{54mm}
 \end{equation}
 
 \end{description}
-
 
 \begin{thebibliography}{99}
 \bibitem{IEEJformat}
