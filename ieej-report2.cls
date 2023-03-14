@@ -1342,14 +1342,14 @@
     \let\\\@stackcr
     \@ishortstack}
 
-\long\def\@makecaption#1#2{{%
-\vskip\abovecaptionskip%
+\long\def\@makecaption#1#2{%
+%\vskip\abovecaptionskip%
 \footnotesize%
 \sbox\@tempboxa{\sffamily\gtfamily\footnotesize #1\hskip1zw\relax #2}%
 \hfil\vbox{\hsize \capwidth\footnotesize\ifdim \wd\@tempboxa <\capwidth \centering\sffamily\gtfamily\fi\footnotesize #1{\hskip1zw\relax}#2}\par
-%\vskip\belowcaptionskip%
-}}
-\long\def\ecaption#1{\par
+\vskip\belowcaptionskip%
+}
+\long\def\ecaption#1{\unskip\par
  \begingroup
   \@parboxrestore
   \if@minipage
