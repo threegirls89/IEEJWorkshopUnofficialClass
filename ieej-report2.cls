@@ -1114,7 +1114,7 @@
    \fi}{\endlist}
 
 \def\descriptionlabel#1{%
-  \setbox0\hbox{\bfseries #1}%
+  \setbox0\hbox{\sffamily\gtfamily #1}%
   \dimen0=\wd0 \dimen1=1zw
   \divide \dimen0 \dimen1
   \multiply \dimen0 \dimen1
