@@ -1343,13 +1343,14 @@
     \@ishortstack}
 
 \long\def\@makecaption#1#2{%
-%\vskip\abovecaptionskip%
+\vskip\abovecaptionskip%
 \footnotesize%
 \sbox\@tempboxa{\sffamily\gtfamily\footnotesize #1\hskip1zw\relax #2}%
-\hfil\vbox{\hsize \capwidth\footnotesize\ifdim \wd\@tempboxa <\capwidth \centering\sffamily\gtfamily\fi\footnotesize #1{\hskip1zw\relax}#2}\par
-\vskip\belowcaptionskip%
+\ifdim \wd\@tempboxa <\capwidth \else\vskip\abovecaptionskip\fi%
+\hfil\vbox{\hsize \capwidth\footnotesize\ifdim \wd\@tempboxa <\capwidth \centering\fi\sffamily\gtfamily\footnotesize #1{\hskip1zw\relax}#2\strut}\par
+\ifdim \wd\@tempboxa <\capwidth \else\vskip1.5mm\fi%
 }
-\long\def\ecaption#1{\unskip\par
+\long\def\ecaption#1{%
  \begingroup
   \@parboxrestore
   \if@minipage
