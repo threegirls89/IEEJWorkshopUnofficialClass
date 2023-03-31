@@ -1015,9 +1015,9 @@
  \setcounter{table}{0}%
  \renewcommand{\thesection}{\@Alph\c@section}%
  \if@english
-  \def\theequation{A\@arabic\c@section.\@arabic\c@equation}%
+  \def\theequation{A\@arabic\c@section.\@arabic\c@subsection.\@arabic\c@equation}%
  \else
-  \def\theequation{\mbox{付}\@arabic\c@section.\@arabic\c@equation}%
+  \def\theequation{\mbox{付}\@arabic\c@section.\@arabic\c@subsection.\@arabic\c@equation}%
   \def\fnum@figure{付図\thefigure}%
   \def\fnum@table{付表\thetable}%
  \fi
@@ -1276,7 +1276,7 @@
 }
 
 \newcounter{figure}
-\renewcommand{\thefigure}{\@arabic\c@section.\@arabic\c@figure}
+\renewcommand{\thefigure}{\@arabic\c@section.\@arabic\c@subsection.\@arabic\c@figure}
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
@@ -1291,7 +1291,7 @@
                 \abovecaptionskip1.5mm\belowcaptionskip\z@\@dblfloat{figure}}
                {\end@dblfloat}
 \newcounter{table}
-\renewcommand{\thetable}{\@arabic\c@section.\@arabic\c@table}
+\renewcommand{\thetable}{\@arabic\c@section.\@arabic\c@subsection.\@arabic\c@table}
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
@@ -1508,7 +1508,7 @@
  \dagger 6\or 
  \dagger 7\or \dagger 8\or \dagger 9\else\@ctrerr\fi}}%
 
-\renewcommand{\theequation}{\@arabic\c@section.\@arabic\c@equation}
+\renewcommand{\theequation}{\@arabic\c@section.\@arabic\c@subsection.\@arabic\c@equation}
 \def\@eqnnum{{\normalfont \normalcolor (\theequation)\hspace*{1zw}}}
 
 \if@english
