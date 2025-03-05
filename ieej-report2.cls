@@ -1403,7 +1403,7 @@
 \if@enablejfam
   \DeclareSymbolFont{mincho}{\jsc@JYn}{mc}{m}{n}%{JY1}{mc}{m}{n}%
   \DeclareSymbolFontAlphabet{\mathmc}{mincho}
-  \SetSymbolFont{mincho}{bold}{\jsc@JYn}{gt}{m}{n}{%JY1}{gt}{m}{n}%
+  \SetSymbolFont{mincho}{bold}{\jsc@JYn}{gt}{m}{n}%{JY1}{gt}{m}{n}%
   \DeclareMathAlphabet{\mathgt}{\jsc@JYn}{gt}{m}{n}%{JY1}{gt}{m}{n}%
   \reDeclareMathAlphabet{\mathrm}{\@mathrm}{\@mathmc}
   \reDeclareMathAlphabet{\mathbf}{\@mathbf}{\@mathgt}
