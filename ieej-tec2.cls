@@ -20,12 +20,6 @@
 % 84mmに26文字入れるので，1文字あたり9.1924ptの幅
 \kanjiskip=0.1924pt plus 0.4pt minus 0.5pt
 
-\newif\if@NTT
-\@ifundefined{kanjiskip}{\@NTTtrue
- \let\kanjiskip=\jintercharskip
- \let\xkanjiskip=\jasciikanjiskip
-% \def\bf{\protect\pdg\protect\pbf}
- }{\@NTTfalse}
 \@ifundefined{burasage}{}{\burasage`，=1\burasage`．=1}
 
 \newif\if@usejistfm \@usejistfmfalse
@@ -66,9 +60,7 @@
  \minute\time \advance\minute-\@tempcnta
 }
 %%\newif\if@stysize \@stysizefalse
-\if@NTT\else
- \newif\if@enablejfam \@enablejfamtrue
-\fi
+\newif\if@enablejfam \@enablejfamtrue
 % a4paper
 \setcounter{@paper}{1}%
 \setlength\paperheight {297mm}%
@@ -842,7 +834,7 @@
     {\bfseries キーワード}\hbox to 1zw{\hss ：\hss}%
     \unhbox\j@keywordbox\par
     \ifvoid\e@keywordbox\else
-    (\unhbox\e@keywordbox)
+    (\unhbox\e@keywordbox)\par
     \fi
    \fi%
   \egroup
@@ -1409,13 +1401,14 @@
  }{}
 
 \if@enablejfam
-  \DeclareSymbolFont{mincho}{\jsc@JYn}{mc}{m}{n}%{JY1}{mc}{m}{n}%
+  \DeclareSymbolFont{mincho}{\jsc@JYn}{mc}{m}{n}
   \DeclareSymbolFontAlphabet{\mathmc}{mincho}
-  \SetSymbolFont{mincho}{bold}{\jsc@JYn}{gt}{m}{n}%{JY1}{gt}{m}{n}%
-  \DeclareMathAlphabet{\mathgt}{\jsc@JYn}{gt}{m}{n}%{JY1}{gt}{m}{n}%
-  \reDeclareMathAlphabet{\mathrm}{\@mathrm}{\@mathmc}
-  \reDeclareMathAlphabet{\mathbf}{\@mathbf}{\@mathgt}
+  \SetSymbolFont{mincho}{bold}{\jsc@JYn}{gt}{m}{n}
   \jfam\symmincho
+  \DeclareMathAlphabet{\mathgt}{\jsc@JYn}{gt}{m}{n}
+  \AtBeginDocument{%
+    \reDeclareMathAlphabet{\mathrm}{\@mathrm}{\@mathmc}
+    \reDeclareMathAlphabet{\mathbf}{\@mathbf}{\@mathgt}}
 \else
   \DeclareRobustCommand{\mathmc}{%
     \@latex@error{Command \noexpand\mathmc invalid with\space
@@ -1426,6 +1419,7 @@
        `disablejfam' class option.}\@eha
   }
 \fi
+
 \DeclareOldFontCommand{\mc}{\normalfont\mcfamily}{\mathmc}
 \DeclareOldFontCommand{\gt}{\normalfont\gtfamily}{\mathgt}
 \DeclareOldFontCommand{\rm}{\normalfont\rmfamily}{\mathrm}
@@ -1683,23 +1677,21 @@
  }
 \fi
 
-\if@NTT\else
- \postbreakpenalty`（=10000
- \prebreakpenalty`）=10000
- \postbreakpenalty`［=10000
- \prebreakpenalty`］=10000
- \postbreakpenalty`〈=10000
- \prebreakpenalty`〉=10000
- \prebreakpenalty`"=10000
- \prebreakpenalty`℃=10000
- \prebreakpenalty`　=10000
- \prebreakpenalty`・=10000
- \prebreakpenalty`〜=10000
- \prebreakpenalty`ー=10000
- \prebreakpenalty`？=10000
- \prebreakpenalty`！=10000
- \postbreakpenalty"5C=10000
-\fi
+\postbreakpenalty`（=10000
+\prebreakpenalty`）=10000
+\postbreakpenalty`［=10000
+\prebreakpenalty`］=10000
+\postbreakpenalty`〈=10000
+\prebreakpenalty`〉=10000
+\prebreakpenalty`"=10000
+\prebreakpenalty`℃=10000
+\prebreakpenalty`　=10000
+\prebreakpenalty`・=10000
+\prebreakpenalty`〜=10000
+\prebreakpenalty`ー=10000
+\prebreakpenalty`？=10000
+\prebreakpenalty`！=10000
+\postbreakpenalty"5C=10000
 
 \def\sloppy{\tolerance9999\hbadness9999\hfuzz.5\p@ \vfuzz.5\p@}
 
@@ -1750,8 +1742,8 @@
 
 \pagestyle{plain}
 \pagenumbering{arabic}
-\raggedbottom
-%\flushbottom
+%\raggedbottom
+\flushbottom
 \twocolumn
 \sloppy
 \@mparswitchfalse
@@ -1761,4 +1753,5 @@
 \newcommand\EqnDots{\leaders\hbox{$\m@th\mkern1.5mu\cdot\mkern1.5mu$}\hfill}
 \newcommand{\eqndotsfill}[1]{\rlap{\hbox to #1{\ \EqnDots}}}
 %
+
 \endinput
